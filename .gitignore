@@ -9,3 +9,6 @@ logs
 *.log*
 .DS_Store
 *.mvn
+mvnw.*
+mvnw
+.mvn
