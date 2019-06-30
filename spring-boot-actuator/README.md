@@ -77,7 +77,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: info
+        include: "*"“
   endpoint:
     health:
       show-details: always
@@ -117,7 +117,7 @@ management:
 |RedisHealthIndicator|检查Redis服务器是否启动|
 |SolrHealthIndicator|检查Solr服务器是否启动|
 
-### 实例1：健康端点 ###
+### 示例1：健康端点 ###
 ***要求：实现```HealthIndicator```接口，自定义检测内容，并返回状态```UP```还是```DOWN```，来尝试一下吧。***
 ```java
 package com.frank.sb.actuator.config;
@@ -176,5 +176,65 @@ public class MyHealthIndicator implements HealthIndicator {
 }
 ```
 
+### 示例2：健康断点 ###
+继承```AbstractHealthIndicator```抽象类，重写```doHealthCheck```方法，功能比示例1更强大，默认```DataSourceHealthIndicator、RedisHealthIndicator```都是这种写法，内容回调中还做了异常处理。
+代码示例如下：
+```java
+package com.frank.sb.actuator.config;
+
+import org.springframework.boot.actuate.health.AbstractHealthIndicator;
+import org.springframework.boot.actuate.health.Health;
+import org.springframework.stereotype.Component;
+
+/**
+ * 自定义健康端点
+ * 功能强大一些。
+ * DataSourceHealthIndicator 与 RedisHealthIndicator 写法相同
+ */
+@Component("frankHealthIndicator_2")
+public class MyAbstractHealthIndicator extends AbstractHealthIndicator {
+    
+    private static final String VERSION = "V1.0.0";
+    
+    @Override
+    protected void doHealthCheck(Health.Builder builder) throws Exception {
+        int code = check();
+        if(code != 0) {
+            builder.down().withDetail("code", code).withDetail("version", VERSION).build();
+        }
+        builder.withDetail("code", code).withDetail("version", VERSION).up().build();
+    }
+    
+    private int check() {
+        return 0;
+    }
+}
+
+```
+
+- 访问查看结果
+
+[http://localhost:8082/actuator/health](http://localhost:8082/actuator/health)
+
+```json
+{
+    "status":"UP", 
+    "details":{
+        "frank":{
+            "status":"UP", "details":{
+                "code":0, "version":"V1.0.0"
+            }
+        },"diskSpace":{
+            "status":"UP", "details":{
+                "total":536870907904, "free":349540884480, "threshold":10485760
+            }
+        }
+    }
+}
+```
+
+**```如果能访问到，并显示上面信息，代表配置成功。```**
+
+### 自定义端点 ###
 
 
