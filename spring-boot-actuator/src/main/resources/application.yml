@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: Spring-Boot-Actuator
+
+server:
+  port: 8082
+
+# 描述信息
+info:
+  blog-url: http://winterchen.com
+  author: Luis
+  # 能获取到maven中配置的版本信息
+  version: @project.version@
+
+# 加载所有的端点/默认只加载了 info/health
+management:
+  endpoints:
+    web:
+      exposure:
+        include: *
+  endpoint:
+    health:
+      show-details: always
+    # 关闭指定的端点
+    shutdown:
+      enabled: false
+#    # 路径映射，将health路径映射成rest_health，那么在访问health路径将为404，因为原请求地址"health"已变成"rest_health"，通常不建议使用此功能：
+#    web:
+#      path-mapping:
+#        health: rest_health
