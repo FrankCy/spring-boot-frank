@@ -77,7 +77,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: *
+        include: info
   endpoint:
     health:
       show-details: always
@@ -90,3 +90,91 @@ management:
 #        health: rest_health
 
 ```
+
+- 启动项目，并访问 http://localhost:8082/actuator/info
+```json
+{"blog-url":"http://winterchen.com","author":"Luis","version":"1.0-SNAPSHOT"}
+```
+
+## 自定义Actuator（学习重点） ##
+以上是默认的以及自带的配置，实际应用中有时候默认并不能满足我们的要求，比如Spring Boot默认的的配置并不能满足实际应用需求。
+
+- 默认装配 HealthIndicators
+下列是依赖```spring-boot-xxx-starter```后相关HealthIndicator的实现（通过```maangement.health.defaults.enabled```属性可以禁用它们），但想要获取一些特定的，例如监控某个特定业务是否可用时，就需要自定义HealthIndicator了
+
+|属性|描述|
+|:--|:--|
+|CassandraHealthIndicator|检查Cassandra数据库是否启动|
+|DiskSpaceHealthIndicator|检查磁盘空间不足|
+|DataSourceHealthIndicator|检查是否可以获得连接DataSource|
+|ElasticsearchHealthIndicator|检查Elasticsearch集群是否启动|
+|InfluxDbHealthIndicator|检查InfluxDB服务器是否启动|
+|JmsHealthIndicator|检查JMS代理是否启动|
+|MailHealthIndicator|检查邮件服务器是否启动|
+|MongoHealthIndicator|检查Mongo数据库是否启动|
+|Neo4jHealthIndicator|检查Neo4j服务器是否启动|
+|RabbitHealthIndicator|检查Rabbit服务器是否启动|
+|RedisHealthIndicator|检查Redis服务器是否启动|
+|SolrHealthIndicator|检查Solr服务器是否启动|
+
+### 实例1：健康端点 ###
+***要求：实现```HealthIndicator```接口，自定义检测内容，并返回状态```UP```还是```DOWN```，来尝试一下吧。***
+```java
+package com.frank.sb.actuator.config;
+
+import org.springframework.boot.actuate.health.Health;
+import org.springframework.boot.actuate.health.HealthIndicator;
+import org.springframework.stereotype.Component;
+
+@Component("frankHealthIndicator_1")
+public class MyHealthIndicator implements HealthIndicator {
+
+    private static final String VERSION = "V1.0.0";
+
+    /**
+     * 自定义检测check函数内容是否为0的例子。
+     * 我们可以访问
+     * @return
+     */
+    @Override
+    public Health health() {
+        // 获取自定义check内容
+        int code = check();
+        // 当check不等于0时，DOWN：代表运行错误
+        if(code != 0) {
+            Health.down().withDetail("code", code).withDetail("version", VERSION).build();
+        }
+        // 当check结果为0时，UP：代表运行正常
+        return  Health.up().withDetail("code", code).withDetail("version", VERSION).up().build();
+    }
+
+    private int check() {
+        return 0;
+    }
+}
+
+```
+
+- 访问查看结果
+
+[http://localhost:8082/actuator/health](http://localhost:8082/actuator/health)
+
+```json
+{
+    "status":"UP", 
+    "details":{
+        "frank":{
+            "status":"UP", "details":{
+                "code":0, "version":"V1.0.0"
+            }
+        },"diskSpace":{
+            "status":"UP", "details":{
+                "total":536870907904, "free":349543550976, "threshold":10485760
+            }
+        }
+    }
+}
+```
+
+
+
