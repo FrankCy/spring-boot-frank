@@ -42,9 +42,9 @@ public class Swagger2 {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 //页面标题
-                .title("寿险")
+                .title("接口文档规范")
                 //描述
-                .description("接口文档")
+                .description("测试接口文档 - Frank")
                 //创建人
                 //.contact(new Contact("LinXiuNan", "", ""))
                 //版本号

@@ -3,6 +3,7 @@ package com.frank.sb.swagger2.controller;
 import com.frank.sb.swagger2.entity.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
@@ -58,6 +59,16 @@ public class TestSwaggerController {
     @ApiImplicitParam(name="user", value="User", required = true, dataType = "User")
     @PostMapping("/addUser")
     public Object addUser(@RequestBody User user){
+        return "success";
+    }
+
+    @ApiOperation(value="查询用户信息", notes = "查询用户基本信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="id", value="用户主键信息", required = true, dataType = "java.lang.String"),
+            @ApiImplicitParam(name="name", value="用户昵称", required = true, dataType = "java.lang.String")
+    })
+    @PostMapping("/findUser")
+    public Object findUser(String id, String name){
         return "success";
     }
 
