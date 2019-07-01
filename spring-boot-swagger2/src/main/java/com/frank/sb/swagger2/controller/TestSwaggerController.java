@@ -1,10 +1,7 @@
 package com.frank.sb.swagger2.controller;
 
 import com.frank.sb.swagger2.entity.User;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -67,7 +64,13 @@ public class TestSwaggerController {
             @ApiImplicitParam(name="id", value="用户主键信息", required = true, dataType = "java.lang.String"),
             @ApiImplicitParam(name="name", value="用户昵称", required = true, dataType = "java.lang.String")
     })
-    @PostMapping("/findUser")
+    @ApiResponses({
+            @ApiResponse(code = 400, message = "服务器异常"),
+            @ApiResponse(code = 200, message = "服务器正常"),
+            @ApiResponse(code = 404, message = "服务器请求地址异常"),
+            @ApiResponse(code = 500, message = "服务器出错，无法使用")
+    })
+    @RequestMapping(value = "/findUser", method = RequestMethod.POST)
     public Object findUser(String id, String name){
         return "success";
     }
