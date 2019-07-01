@@ -218,15 +218,21 @@ public class MyAbstractHealthIndicator extends AbstractHealthIndicator {
 
 ```json
 {
-    "status":"UP", 
-    "details":{
-        "frank":{
-            "status":"UP", "details":{
-                "code":0, "version":"V1.0.0"
+    "status": "UP",
+    "details": {
+        "frank": {
+            "status": "UP",
+            "details": {
+                "code": 0,
+                "version": "V1.0.0"
             }
-        },"diskSpace":{
-            "status":"UP", "details":{
-                "total":536870907904, "free":349540884480, "threshold":10485760
+        },
+        "diskSpace": {
+            "status": "UP",
+            "details": {
+                "total": 500068036608,
+                "free": 50570465280,
+                "threshold": 10485760
             }
         }
     }
