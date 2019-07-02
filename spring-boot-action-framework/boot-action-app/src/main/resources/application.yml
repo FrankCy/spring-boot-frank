@@ -1,0 +1,79 @@
+server:
+  port: 8081
+  tomcat:
+    # 默认编码
+    uri-encoding: UTF-8
+    max-threads: 0
+  session-timeout: 10
+## 后续进行服务化要把以下关于数据库配置放到 reporting-dao 中，并通过Cloud组件进行调用 ##
+spring:
+  datasource:
+    name: mysql_fund
+    type: com.alibaba.druid.pool.DruidDataSource
+    #druid相关配置
+    druid:
+      #监控统计拦截的filters
+      filters: stat
+      driver-class-name: com.mysql.jdbc.Driver
+      #基本属性
+      url: jdbc:mysql://localhost:3306/frank?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+      username: root
+      password: frank
+      #配置初始化大小/最小/最大
+      initial-size: 1
+      min-idle: 1
+      max-active: 8
+      #获取连接等待超时时间
+      max-wait: 60000
+      #间隔多久进行一次检测，检测需要关闭的空闲连接
+      time-between-eviction-runs-millis: 60000
+      #一个连接在池中最小生存的时间
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
+  application:
+    name: boot-action-app
+  mvc:
+    view:
+      # 默认前缀
+      prefix: /
+  freemarker:
+    cache: false
+    charset: UTF-8
+    check-template-location: true
+    content-type: text/html
+    expose-request-attributes: true
+    expose-session-attributes: true
+    request-context-attribute: request
+    suffix: .ftl
+  thymeleaf:
+    prefix: classpath:/templates
+    cache: true
+#pagehelper
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+  returnPageInfo: check
+
+logging:
+  level:
+    com:
+      fund:
+        dao:
+          mapper: debug
+  pattern:
+    console: "%date %-5level %logger{0} - %msg%n"
+    file: "%date %-5level [%thread] %logger{0} [%file:%line] - %msg%n"
+    level: "%5p"
+  path: ./logs
+
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.frank.boot.action.framework.dao.mapper

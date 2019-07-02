@@ -12,6 +12,7 @@
         <module>spring-boot-log</module>
         <module>spring-boot-actuator</module>
         <module>spring-boot-swagger2</module>
+        <module>spring-boot-action-framework</module>
     </modules>
 
     <parent>
