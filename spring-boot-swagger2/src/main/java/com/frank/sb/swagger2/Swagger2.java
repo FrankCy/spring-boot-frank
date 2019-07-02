@@ -13,14 +13,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * @version 1.0
- * @description：
- * @author: Yang.Chang
- * @project: spring-boot-frank
- * @package: com.frank.sb.swagger2.config、
- * @email: cy880708@163.com
- * @date: 2019/7/1 下午2:18
- * @mofified By:
+ * 基础配置类
  */
 @Configuration
 @EnableSwagger2
