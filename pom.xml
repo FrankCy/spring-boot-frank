@@ -13,6 +13,7 @@
         <module>spring-boot-actuator</module>
         <module>spring-boot-swagger2</module>
         <module>spring-boot-action-framework</module>
+        <module>spring-boot-jwt-security-app</module>
     </modules>
 
     <parent>
