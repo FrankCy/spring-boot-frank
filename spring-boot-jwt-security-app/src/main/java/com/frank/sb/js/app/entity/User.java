@@ -1,19 +1,40 @@
 package com.frank.sb.js.app.entity;
 
-import javax.persistence.*;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
 
-@Entity
-@Table(name = "jd_user")
+import javax.validation.constraints.Size;
+
+@Builder
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
-    @Column(name = "username")
-    private String username;
-    @Column(name = "password")
+
+    /**
+     * 用户名
+     */
+    @ApiModelProperty(value = "用户名", required = true)
+    @Size(min=6, max=20)
+    private String name;
+
+    /**
+     * 密码
+     */
+    @ApiModelProperty(value = "密码", required = true)
+    @Size(min=8, max=20)
     private String password;
-    @Column(name = "role")
-    private String role;
-    // getter and setter...
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

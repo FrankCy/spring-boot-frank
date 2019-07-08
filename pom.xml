@@ -14,6 +14,8 @@
         <module>spring-boot-swagger2</module>
         <module>spring-boot-action-framework</module>
         <module>spring-boot-jwt-security-app</module>
+        <module>spring-boot-symmetric-encryption</module>
+        <module>spring-boot-jpa</module>
     </modules>
 
     <parent>
