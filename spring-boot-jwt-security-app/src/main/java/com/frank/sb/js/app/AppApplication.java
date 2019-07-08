@@ -1,5 +1,6 @@
 package com.frank.sb.js.app;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -14,6 +15,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @mofified By:
  */
 @SpringBootApplication
+@MapperScan("com.frank.sb.js.app.dao.mapper")
 public class AppApplication {
     public static void main(String[] args) {
         SpringApplication.run(AppApplication.class, args);
