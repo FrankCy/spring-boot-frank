@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.frank.oauth.server.mapper.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.frank.oauth.entity.po.Role">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="ROLE_LEVEL" jdbcType="INTEGER" property="roleLevel" />
+    <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
+    <result column="MENU_ITEMS" jdbcType="VARCHAR" property="menuItems" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, NAME, ROLE_LEVEL, DESCRIPTION, MENU_ITEMS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ROLE
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectRoleListByUserId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    R.ID,
+    R.NAME,
+    R.ROLE_LEVEL,
+    R.DESCRIPTION,
+    R.MENU_ITEMS
+    from ROLE R
+    LEFT JOIN USER_ROLE UR
+    ON UR.R_ID = R.ID
+    where UR.USER_ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ROLE
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.frank.oauth.entity.po.Role">
+    insert into ROLE (ID, NAME, ROLE_LEVEL, 
+      DESCRIPTION, MENU_ITEMS)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{roleLevel,jdbcType=INTEGER}, 
+      #{description,jdbcType=VARCHAR}, #{menuItems,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.frank.oauth.entity.po.Role">
+    insert into ROLE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="roleLevel != null">
+        ROLE_LEVEL,
+      </if>
+      <if test="description != null">
+        DESCRIPTION,
+      </if>
+      <if test="menuItems != null">
+        MENU_ITEMS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="roleLevel != null">
+        #{roleLevel,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="menuItems != null">
+        #{menuItems,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.frank.oauth.entity.po.Role">
+    update ROLE
+    <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="roleLevel != null">
+        ROLE_LEVEL = #{roleLevel,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="menuItems != null">
+        MENU_ITEMS = #{menuItems,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.frank.oauth.entity.po.Role">
+    update ROLE
+    set NAME = #{name,jdbcType=VARCHAR},
+      ROLE_LEVEL = #{roleLevel,jdbcType=INTEGER},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      MENU_ITEMS = #{menuItems,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

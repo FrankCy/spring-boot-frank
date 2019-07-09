@@ -5,10 +5,9 @@ server:
     uri-encoding: UTF-8
     max-threads: 0
   session-timeout: 10
-## 后续进行服务化要把以下关于数据库配置放到 reporting-dao 中，并通过Cloud组件进行调用 ##
 spring:
   datasource:
-    name: mysql_sb_jsa
+    name: mysql_oauth
     type: com.alibaba.druid.pool.DruidDataSource
     #druid相关配置
     druid:
@@ -16,13 +15,13 @@ spring:
       filters: stat
       driver-class-name: com.mysql.jdbc.Driver
       #基本属性
-      url: jdbc:mysql://localhost:3306/security_jwt?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+      url: jdbc:mysql://127.0.0.1:3306/security_jwt?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
       username: root
       password: frank
       #配置初始化大小/最小/最大
       initial-size: 1
       min-idle: 1
-      max-active: 8
+      max-active: 20
       #获取连接等待超时时间
       max-wait: 60000
       #间隔多久进行一次检测，检测需要关闭的空闲连接
@@ -37,7 +36,7 @@ spring:
       pool-prepared-statements: false
       max-pool-prepared-statement-per-connection-size: 20
   application:
-    name: spring-boot-jwt-security-app
+    name: Spring-Boot-OAuth2.0-Client
   mvc:
     view:
       # 默认前缀
@@ -53,11 +52,19 @@ spring:
     suffix: .ftl
   thymeleaf:
     prefix: classpath:/templates
-    cache: true
-  servlet:
-    multipart:
-      max-file-size: -1
-      max-request-size: -1
+    cache: false
+
+logging:
+  level:
+#    org:
+#      springframework:
+#        security: INFO
+    com.frank.oauth.server.mapper: debug
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.frank.oauth.server.mapper
+
 #pagehelper
 pagehelper:
   helperDialect: mysql
@@ -66,34 +73,7 @@ pagehelper:
   params: count=countSql
   returnPageInfo: check
 
-logging:
-  level:
-    com:
-      asset:
-        disposal:
-          dao:
-            mapper: debug
-
-  pattern:
-    console: "%date %-5level %logger{0} - %msg%n"
-    file: "%date %-5level [%thread] %logger{0} [%file:%line] - %msg%n"
-    level: "%5p"
-  path: ./logs/asset-central
-
-mybatis:
-  mapper-locations: classpath:mapper/*Mapper.xml
-  type-aliases-package: com.frank.sb.js.app.dao.mapper
-
 system:
   user:
     password:
       secret: uvwxyz
-      init:
-        password: 666666
-
-jwt:
-  header: Authorization
-  secret: mySecret
-  #token有效期一天
-  expiration: 86400
-  tokenHead: "Bearer "

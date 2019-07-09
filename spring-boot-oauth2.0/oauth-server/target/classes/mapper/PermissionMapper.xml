@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.frank.oauth.server.mapper.PermissionMapper">
+  <resultMap id="BaseResultMap" type="com.frank.oauth.entity.po.Permission">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="PERMISSION_DES" jdbcType="VARCHAR" property="permissionDes" />
+    <result column="PERMISSION_URI" jdbcType="VARCHAR" property="permissionUri" />
+    <result column="METHOD" jdbcType="VARCHAR" property="method" />
+    <result column="PERMISSION_NAME" jdbcType="VARCHAR" property="permissionName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PERMISSION_DES, PERMISSION_URI, METHOD, PERMISSION_NAME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from PERMISSION
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByUserId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    PER.ID,
+    PER.PERMISSION_DES,
+    PER.PERMISSION_URI,
+    PER.METHOD,
+    PER.PERMISSION_NAME
+    from PERMISSION PER
+    LEFT JOIN ROLE_PERMISSION PR
+    ON PR.PER_ID = PER.ID
+    LEFT JOIN ROLE R
+    ON R.ID = PR.R_ID
+    LEFT JOIN USER_ROLE UR
+    ON UR.R_ID = R.ID
+    LEFT JOIN USER U
+    ON U.ID = UR.USER_ID
+    WHERE UR.USER_ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from PERMISSION
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.frank.oauth.entity.po.Permission">
+    insert into PERMISSION (ID, PERMISSION_DES, PERMISSION_URI, 
+      METHOD, PERMISSION_NAME)
+    values (#{id,jdbcType=VARCHAR}, #{permissionDes,jdbcType=VARCHAR}, #{permissionUri,jdbcType=VARCHAR}, 
+      #{method,jdbcType=VARCHAR}, #{permissionName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.frank.oauth.entity.po.Permission">
+    insert into PERMISSION
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="permissionDes != null">
+        PERMISSION_DES,
+      </if>
+      <if test="permissionUri != null">
+        PERMISSION_URI,
+      </if>
+      <if test="method != null">
+        METHOD,
+      </if>
+      <if test="permissionName != null">
+        PERMISSION_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionDes != null">
+        #{permissionDes,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionUri != null">
+        #{permissionUri,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null">
+        #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionName != null">
+        #{permissionName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.frank.oauth.entity.po.Permission">
+    update PERMISSION
+    <set>
+      <if test="permissionDes != null">
+        PERMISSION_DES = #{permissionDes,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionUri != null">
+        PERMISSION_URI = #{permissionUri,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null">
+        METHOD = #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionName != null">
+        PERMISSION_NAME = #{permissionName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.frank.oauth.entity.po.Permission">
+    update PERMISSION
+    set PERMISSION_DES = #{permissionDes,jdbcType=VARCHAR},
+      PERMISSION_URI = #{permissionUri,jdbcType=VARCHAR},
+      METHOD = #{method,jdbcType=VARCHAR},
+      PERMISSION_NAME = #{permissionName,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
