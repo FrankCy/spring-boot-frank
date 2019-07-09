@@ -43,6 +43,9 @@ public class TokenAuthenticationService {
      * @param username
      */
     static void addAuthentication(HttpServletResponse response, String username) {
+        // 这里查询用户安全组，赋值
+        // ...
+        // ...
 
         // 生成JWT
         String JWT = Jwts.builder()
