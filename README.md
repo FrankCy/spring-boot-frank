@@ -14,3 +14,4 @@ Spring Boot 是简化Spring应用的创建、运行、调试、部署等一系�
 |spring-boot-swagger2|文档编写（API）|边开发边写API文档|
 |spring-boot-symmetric-encryption|加密|通过spring boot 实现加密|
 |spring-boot-transactional|事务| 实现事务控制 |
+|spring-boot-admin|监控| 实现监控系统 |
