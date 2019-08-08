@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: spring-bootadmin-client
+  boot:
+    admin:
+      client:
+        # 要注册的Spring Boot Admin Server的URL
+        url: http://localhost:8769
+server:
+  port: 8768
+
+# 与Spring Boot 2一样，默认情况下，大多数actuator的端口都不会通过http公开，* 代表公开所有这些端点。对于生产环境，应该仔细选择要公开的端点。
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
