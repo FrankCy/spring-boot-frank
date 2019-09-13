@@ -1,13 +1,7 @@
-# Redis for Java #
+# Redis Cluster for Java #
 
-## 简介 ##
-Redis常用功能
-- 集群搭建
-- 分布式
-- 事务控制
-- watch
-- 泳道
-- 哨兵
+## Redis 集群 ##
+
 
 ## 功能 ##
 地址|说明

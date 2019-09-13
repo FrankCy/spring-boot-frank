@@ -19,6 +19,7 @@
         <module>spring-boot-oauth2.0</module>
         <module>spring-boot-transactional</module>
         <module>spring-boot-admin</module>
+        <module>spring-boot-redis-cluster</module>
     </modules>
 
     <parent>
