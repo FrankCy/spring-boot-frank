@@ -1,0 +1,38 @@
+spring:
+  ## Redis 配置
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+    timeout: 0ms
+    ## Jedis
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0
+  application:
+    name: spring-boot-redis
+  ##默认后缀
+  mvc:
+    view:
+      suffix: .html
+  ##关闭thymeleaf缓存
+  thymeleaf:
+    cache: false
+  ##ftl配置
+  freemarker:
+    ## 文件配置路径 template-loader-path: classpath:/
+    cache: false
+    charset: UTF-8
+    check-template-location: true
+    content-type: text/html
+    expose-request-attributes: true
+    expose-session-attributes: true
+server:
+  port: 8077
+  session-timeout: 10
+  tomcat:
+    max-threads: 0
+    uri-encoding: UTF-8
