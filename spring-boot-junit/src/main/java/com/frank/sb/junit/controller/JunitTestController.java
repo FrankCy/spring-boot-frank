@@ -23,8 +23,8 @@ public class JunitTestController {
     @Autowired
     private JunitService junitService;
 
-    @RequestMapping(value = "/index")
-    public ModelAndView index() {
+    @RequestMapping(value = "/helloJunit")
+    public ModelAndView helloJunit() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("msg", junitService.junitTestServiceString("Frank"));
         modelAndView.setViewName("index");
