@@ -1,4 +1,3 @@
-@[toc]
 # Spring Boot —— Junit单元测试（MockMvc） #
 ## 简介 ##
 
@@ -227,7 +226,8 @@ Process finished with exit code 0
 - RequestBuilder asyncDispatch(final MvcResult mvcResult)
 创建一个从启动异步处理的请求的MvcResult进行异步分派的RequestBuilder
 
-** MockHttpServletRequestBuilder可通过方法获取两类Builder （MockHttpServletRequestBuilder、MockMultipartHttpServletRequestBuilder ），下面分别介绍两类的主要API： **
+
+**MockHttpServletRequestBuilder可通过方法获取两类Builder （MockHttpServletRequestBuilder、MockMultipartHttpServletRequestBuilder ），下面分别介绍两类的主要API：**
 #### MockHttpServletRequestBuilder ####
 - MockHttpServletRequestBuilder header(String name, Object... values)/MockHttpServletRequestBuilder headers(HttpHeaders httpHeaders)
 添加头信息；
@@ -279,7 +279,7 @@ Process finished with exit code 0
 返回验证成功后的MvcResult；用于自定义验证/下一步的异步处理；
 
 ### ResultMatcher / MockMvcResultMatchers ###
-**```ResultMatcher用来匹配执行完请求后的结果验证，其就一个match(MvcResult result)断言方法，如果匹配失败将抛出相应的异常；此类例子中并没有使用，具体提供以下API：```
+**```ResultMatcher用来匹配执行完请求后的结果验证，其就一个match(MvcResult result)断言方法，如果匹配失败将抛出相应的异常；此类例子中并没有使用，具体提供以下API：```**
 - HandlerResultMatchers handler()
 请求的Handler验证器，比如验证处理器类型/方法名；此处的Handler其实就是处理请求的控制器；
 - RequestResultMatchers request()
@@ -312,6 +312,6 @@ Process finished with exit code 0
 验证处理完请求后重定向的url（Ant风格模式匹配，@since spring4）；
 
 - - -
-[博客内容API转自：https://my.oschina.net/sdlvzg/blog/1594821](https://my.oschina.net/sdlvzg/blog/1594821)
+[博客API内容转自：https://my.oschina.net/sdlvzg/blog/1594821](https://my.oschina.net/sdlvzg/blog/1594821)
 - - -
-[GitHub 项目地址]()
+[GitHub 项目地址](https://github.com/FrankCy/spring-boot-frank/tree/master/spring-boot-junit)
