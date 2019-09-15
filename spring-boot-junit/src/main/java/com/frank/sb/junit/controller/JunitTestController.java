@@ -4,6 +4,7 @@ import com.frank.sb.junit.service.JunitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @version 1.0
@@ -19,15 +20,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/junit")
 public class JunitTestController {
 
-    private final JunitService junitService;
-
     @Autowired
-    public JunitTestController(JunitService junitService) {
-        this.junitService = junitService;
-    }
+    private JunitService junitService;
 
     @RequestMapping(value = "/index")
-    public String index() {
-        return junitService.junitTestServiceString("我是谁");
+    public ModelAndView index() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("msg", junitService.junitTestServiceString("Frank"));
+        modelAndView.setViewName("index");
+        return modelAndView;
     }
 }

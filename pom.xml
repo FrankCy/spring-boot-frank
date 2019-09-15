@@ -20,7 +20,6 @@
         <module>spring-boot-transactional</module>
         <module>spring-boot-admin</module>
         <module>spring-boot-source-code</module>
-        <module>spring-boot-junit</module>
     </modules>
 
     <parent>
