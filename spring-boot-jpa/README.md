@@ -1,8 +1,9 @@
 # Spring Boot JPA
+
 - - - 
 JPA Demo【实现新增和查询】
 
-## 步骤 1
+## 1. 配置依赖
 配置依赖
 ```xml
 <dependencies>
@@ -36,7 +37,7 @@ JPA Demo【实现新增和查询】
 
     </dependencies>
 ```
-## 步骤 2
+## 2. 配置yaml
 配置yaml
 ```yaml
 spring:
@@ -50,19 +51,19 @@ spring:
       ddl-auto: update    #更新或者创建表
     show-sql: true        #控制台显示sql
 ```
-## 步骤 3
+## 3. 实现实体
 实现实体 User.java
 
-## 步骤 4
+## 4. 编写接口（repository）
 编写接口（repository）继承JpaRepository<Entity, Integer>
 通过继承JpaRepository实现CRUD
 UserRepository.java
 
-## 步骤 5
+## 5. 实现Service和ServiceImpl
 实现Service和ServiceImpl
 UserService.java
 UserServiceImpl.java
-## 步骤6
+## 6. 编写Controller
 编写Controller
 UserController.java
 ### 地址
@@ -72,4 +73,7 @@ http://localhost:8080/user/saveUser
 http://localhost:8080/user/getUser
 
 - - -
-使用JPA，编写实体之后启动就可以将表和字段生成在yaml配置中对应的数据库中
+使用JPA，编写实体之后启动就可以将表和字段生成在yaml配置中对应的数据库中；
+
+## GitHub地址
+[https://github.com/FrankCy/spring-boot-frank/tree/master/spring-boot-jpa](https://github.com/FrankCy/spring-boot-frank/tree/master/spring-boot-jpa)
