@@ -15,7 +15,6 @@
         <module>spring-boot-action-framework</module>
         <module>spring-boot-jwt-security-app</module>
         <module>spring-boot-symmetric-encryption</module>
-        <module>spring-boot-jpa</module>
         <module>spring-boot-oauth2.0</module>
         <module>spring-boot-transactional</module>
         <module>spring-boot-admin</module>
