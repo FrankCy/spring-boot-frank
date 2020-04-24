@@ -7,12 +7,16 @@ Spring Boot 是简化Spring应用的创建、运行、调试、部署等一系�
 |:--|:--|:--|
 |spring-boot-action-framework|结构化spring boot项目|业务分离,架构分离，实际开发中可以使用|
 |spring-boot-actuator|监控|spring boot 监控|
+|spring-boot-admin|监控| 实现监控系统 | |
 |spring-boot-jpa|数据库中间件|数据库中间件，实现通过JPA进行数据的CRUD|
+|spring-boot-junit|测试| 编写单元测试
 |spring-boot-jwt-security-app|APP安全认证|通过jwt和spring boot security进行API的安全你认证|
 |spring-boot-log|日志处理|了解spring boot如何记录日志。|
+|spring-boot-logback|日志处理|Logback|
 |spring-boot-oauth2.0|安全认证|使用spring boot security 实现oauth2.0安全|
+|spring-boot-redis-cluster|缓存|Redis集群配置|
+|spring-boot-source-code|源码|Spring 源码分析|
 |spring-boot-swagger2|文档编写（API）|边开发边写API文档|
 |spring-boot-symmetric-encryption|加密|通过spring boot 实现加密|
 |spring-boot-transactional|事务| 实现事务控制 |
-|spring-boot-admin|监控| 实现监控系统 |
 |spring-boot-user-security-group|权限设计| 多商户多用户后台管理端 |
