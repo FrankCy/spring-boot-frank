@@ -1,4 +1,4 @@
-package com.frank.sb.guava.retrying;
+package com.frank.sb.guava.retrying.test;
 
 import com.github.rholder.retry.Retryer;
 import com.github.rholder.retry.RetryerBuilder;
