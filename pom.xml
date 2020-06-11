@@ -20,6 +20,7 @@
         <module>spring-boot-admin</module>
         <module>spring-boot-source-code</module>
         <module>spring-boot-guava-retrying</module>
+        <module>spring-boot-quartz</module>
     </modules>
 
     <parent>
