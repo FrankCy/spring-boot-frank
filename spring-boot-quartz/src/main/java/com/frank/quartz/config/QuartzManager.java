@@ -40,7 +40,6 @@ public class QuartzManager implements ApplicationContextAware {
 
     private static final String TRIGGER_DEFAULT_GROUP_NAME = "TRIGGER_DEFAULT_GROUP_NAME";
 
-
     @Autowired
     private ApplicationContext applicationContext;
 

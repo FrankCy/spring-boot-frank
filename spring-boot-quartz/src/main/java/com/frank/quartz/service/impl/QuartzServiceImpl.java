@@ -24,8 +24,8 @@ public class QuartzServiceImpl implements QuartzService {
     private QuartzManager quartzManager;
 
     @Override
-    public boolean settingSpiderTask(String cron) {
-        if(quartzManager.addJob("spiderTask", spiderService.getClass().getName(), cron)) {
+    public boolean settingSpiderTask(String jobName, String cron) {
+        if(quartzManager.addJob(jobName, spiderService.getClass().getName(), cron)) {
             return true;
         }
         return false;

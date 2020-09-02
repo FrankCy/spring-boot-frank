@@ -8,6 +8,6 @@ package com.frank.quartz.service;
  */
 public interface QuartzService {
 
-    boolean settingSpiderTask(String cron);
+    boolean settingSpiderTask(String jobName, String cron);
 
 }

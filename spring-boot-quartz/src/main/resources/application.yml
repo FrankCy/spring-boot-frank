@@ -12,7 +12,7 @@ spring:
           username: root
           password: root
         quartz:
-          url: jdbc:mysql://127.0.0.1:3306/quartz?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+          url: jdbc:mysql://127.0.0.1:3306/quartz-frank-mysql?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
           driver-class-name: com.mysql.cj.jdbc.Driver
           username: root
           password: root

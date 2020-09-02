@@ -21,3 +21,5 @@ Spring Boot 是简化Spring应用的创建、运行、调试、部署等一系�
 |spring-boot-transactional|事务| 实现事务控制 |
 |spring-boot-user-security-group|权限设计| 多商户多用户后台管理端 |
 |spring-boot-guava-retrying|重试| 重试的实现 |
+|spring-boot-lru|缓存对象（最近使用的排在前面）|在研发爬虫的时候，获取IP：PORT，首先爬取大量IP：PORT，存储在对象中，然后复用、替换 |
+|spring-boot-mail|Spring Boot 发邮件|发送普通邮件、HTML邮件、附件邮件 |

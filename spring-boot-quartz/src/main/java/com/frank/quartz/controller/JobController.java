@@ -3,7 +3,6 @@ package com.frank.quartz.controller;
 import com.frank.quartz.config.QuartzManager;
 import com.frank.quartz.config.TestTask;
 import com.frank.quartz.service.QuartzService;
-import com.frank.quartz.service.SpiderService;
 import com.frank.quartz.util.ApiResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,9 +73,8 @@ public class JobController {
      * @return
      */
     @RequestMapping(value = "/addSpiderJob", method = RequestMethod.GET)
-    public ApiResult addSpiderJob() {
-        String cron = "*/5 * * * * ?";
-        if(quartzService.settingSpiderTask(cron)) {
+    public ApiResult addSpiderJob(String jobName, String cron) {
+        if(quartzService.settingSpiderTask(jobName, cron)) {
             return ApiResult.success("定时任务设置成功，规则为："+ cron);
         } else {
             return ApiResult.failure("定时任务任务设置失败");

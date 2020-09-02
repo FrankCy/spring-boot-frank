@@ -3,8 +3,8 @@ package com.frank.quartz.service.impl;
 import com.frank.quartz.config.AbstractTask;
 import com.frank.quartz.service.SpiderService;
 import lombok.extern.slf4j.Slf4j;
-import org.quartz.JobDetail;
 import org.quartz.JobExecutionContext;
+import org.quartz.JobKey;
 import org.springframework.stereotype.Service;
 
 /**
@@ -25,8 +25,8 @@ public class SpiderServiceImpl extends AbstractTask implements SpiderService  {
 
     @Override
     protected void executeInternal(JobExecutionContext context) {
-        JobDetail jobDetail = context.getJobDetail();
-        String name = (String)jobDetail.getJobDataMap().get("name");
+        JobKey jobKey = context.getJobDetail().getKey();
+        String name = jobKey.getName();
         log.info("SpiderServiceImpl ---- executeInternal , {}" , name);
     }
 }

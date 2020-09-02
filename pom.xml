@@ -21,6 +21,9 @@
         <module>spring-boot-source-code</module>
         <module>spring-boot-guava-retrying</module>
         <module>spring-boot-quartz</module>
+        <module>spring-boot-lru</module>
+        <module>spring-boot-es</module>
+        <module>spring-boot-mail</module>
     </modules>
 
     <parent>
