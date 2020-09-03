@@ -4,15 +4,15 @@ server:
 spring:
   mail:
     # 发送邮件的服务器
-    host: xxxx
-    fromName: \u4xxx\u4xxx\u4xxx
+    host: exchange.tiens.com
+    fromName: 今天买买机器人
     # 发送邮件的邮箱地址
-    username: xxx@email.com
+    username: jtmmrobot@tiens.com
     # 发送邮件的邮箱密码
-    password: password
+    password: kmsys_202005
     # 接收邮件的邮箱
-    to: xxx@email.com
+    to: chenlh3@tiens.com
     # 默认编码格式
     default-encoding: UTF-8
     # 发送邮件的地址，和上面username一致
-    from: xxx@email.com
+    from: jtmmrobot@tiens.com

@@ -23,7 +23,7 @@ public class MailServiceTest {
 
     @Test
     public void testSendSimpleMail() {
-        System.out.println(mailService.sendSimpleMail("xxxx@163.com", "主题：测试邮件发送", "测试邮件发送是否可用"));
+        System.out.println(mailService.sendSimpleMail("cy880708@163.com", "主题：测试邮件发送", "测试邮件发送是否可用"));
     }
 
     @Test

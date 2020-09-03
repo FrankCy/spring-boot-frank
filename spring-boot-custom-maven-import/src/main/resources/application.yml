@@ -1,0 +1,4 @@
+#测试XfProperties
+xf:
+  to-who: spring
+  msg: hello

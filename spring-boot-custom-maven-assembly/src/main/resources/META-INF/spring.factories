@@ -1,0 +1,3 @@
+####自动配置自定义Starter
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.frank.boot.custom.maven.assembly.config.XfConfig
