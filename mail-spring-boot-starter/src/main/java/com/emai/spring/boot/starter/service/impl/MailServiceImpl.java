@@ -23,6 +23,7 @@ public class MailServiceImpl implements MailService {
     @SuppressWarnings("all")
     @Override
     public void sendMail(String to, String titile, String content) {
+
         try {
             //创建SimpleMailMessage对象
             SimpleMailMessage message = new SimpleMailMessage();
