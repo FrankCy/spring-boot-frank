@@ -18,7 +18,6 @@ import org.springframework.context.annotation.Configuration;
  * @author cy
  * @version XfConfig.java, v 0.1 2020年09月03日 13:33 cy Exp $
  */
-
 @Configuration
 @EnableConfigurationProperties(XfProperties.class)
 @ConditionalOnProperty(prefix = "xf",value = "enabled", matchIfMissing = true)
