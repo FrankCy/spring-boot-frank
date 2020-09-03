@@ -26,6 +26,7 @@
         <module>spring-boot-mail</module>
         <module>spring-boot-custom-maven-assembly</module>
         <module>spring-boot-custom-maven-import</module>
+        <module>mail-spring-boot-starter</module>
     </modules>
 
     <parent>

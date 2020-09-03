@@ -2,3 +2,6 @@
 xf:
   to-who: spring
   msg: hello
+
+server:
+  port: 8082
