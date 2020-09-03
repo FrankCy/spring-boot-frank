@@ -5,7 +5,7 @@
  mvn clean install -Dmaven.test.skip=true
 ```
 
-- 项目中引入
+- 需要的项目中引入
 ```xml
 <dependency>
     <groupId>spring-boot-test</groupId>
@@ -14,7 +14,7 @@
 </dependency>
 ```
 
-- 编写测试类
+- 需要的项目中编写测试类
 ```java
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = { ImportApplication.class, ImportMailServiceImpl.class }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)//配置启动类

@@ -17,8 +17,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class MailServiceImpl implements MailService {
 
-    @Autowired
     private JavaMailSenderImpl mailSender;
+
+    public MailServiceImpl(JavaMailSenderImpl mailSender) {
+        this.mailSender = mailSender;
+    }
 
     @SuppressWarnings("all")
     @Override
@@ -36,7 +39,7 @@ public class MailServiceImpl implements MailService {
             //邮件内容
             message.setText(content);
             //发送邮件
-            mailSender.send(message);
+            this.mailSender.send(message);
         } catch (Exception e) {
             log.error("发送邮件错误", e);
         }

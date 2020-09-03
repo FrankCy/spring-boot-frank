@@ -11,19 +11,40 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "spring.mail")
 public class MailProperties {
 
-    private String host;
+    /**
+     * 发送邮件的服务器
+     */
+    private String host = "邮件服务器";
 
-    private String fromName;
+    /**
+     * 发送人
+     */
+    private String fromName = "";
 
-    private String username;
+    /**
+     * 发送邮件的邮箱地址
+     */
+    private String username = "";
 
-    private String password;
+    /**
+     * 发送邮件的邮箱密码
+     */
+    private String password = "";
 
-    private String to;
+    /**
+     * 接收邮件的邮箱
+     */
+    private String to = "";
 
-    private String defaultEncoding;
+    /**
+     * 默认编码格式
+     */
+    private String defaultEncoding = "UTF-8";
 
-    private String from;
+    /**
+     * 发送邮件的地址，和上面username一致
+     */
+    private String from = "";
 
     public String getHost() {
         return host;

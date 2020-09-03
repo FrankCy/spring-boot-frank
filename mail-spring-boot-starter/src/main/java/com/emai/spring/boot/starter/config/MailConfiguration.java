@@ -21,25 +21,20 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 @EnableConfigurationProperties(MailProperties.class)
 @ConditionalOnClass(value = { MailService.class, MailServiceImpl.class })
 public class MailConfiguration {
+
     @Autowired
     private MailProperties mailProperties;
 
     @Bean
     @ConditionalOnMissingBean
     @ConditionalOnProperty(prefix = "spring.mail", value = "enabled", matchIfMissing = true)
-    JavaMailSenderImpl startJavaMailSenderImpl() {
+    MailService starterService() {
         JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
         javaMailSender.setHost(mailProperties.getHost());
         javaMailSender.setUsername(mailProperties.getUsername());
         javaMailSender.setPassword(mailProperties.getPassword());
         javaMailSender.setDefaultEncoding(mailProperties.getDefaultEncoding());
-        return javaMailSender;
-    }
-
-    @Bean
-    @ConditionalOnMissingBean
-    MailService starterService() {
-        return new MailServiceImpl();
+        return new MailServiceImpl(javaMailSender);
     }
 
 }
