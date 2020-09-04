@@ -14,27 +14,27 @@ public class MailProperties {
     /**
      * 发送邮件的服务器
      */
-    private String host = "邮件服务器";
+    private String host = "sendServer@111.com";
 
     /**
      * 发送人
      */
-    private String fromName = "";
+    private String fromName = "发送人贾某";
 
     /**
      * 发送邮件的邮箱地址
      */
-    private String username = "";
+    private String username = "sendUser@163.com";
 
     /**
      * 发送邮件的邮箱密码
      */
-    private String password = "";
+    private String password = "password";
 
     /**
      * 接收邮件的邮箱
      */
-    private String to = "";
+    private String to = "uuuu@163.com";
 
     /**
      * 默认编码格式
@@ -44,7 +44,7 @@ public class MailProperties {
     /**
      * 发送邮件的地址，和上面username一致
      */
-    private String from = "";
+    private String from = "sendUser@163.com";
 
     public String getHost() {
         return host;

@@ -8,6 +8,32 @@ package com.emai.spring.boot.starter.service;
  */
 public interface MailService {
 
-    void sendMail(String to, String titile, String content);
+    /**
+     * 发送普通邮件
+     * @param to
+     * @param title
+     * @param content
+     * @return
+     */
+    String sendMail(String to, String title, String content);
+
+    /**
+     * 发送HTML邮件
+     * @param to
+     * @param title
+     * @param content
+     * @return
+     */
+    String sendHtmlMail(String to, String title, String content);
+
+    /**
+     * 发送附件邮件
+     * @param to
+     * @param title
+     * @param content
+     * @param filePath
+     * @return
+     */
+    String sendAttachmentsMail(String to, String title, String content, String filePath);
 
 }

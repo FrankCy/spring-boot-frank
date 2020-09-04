@@ -21,4 +21,14 @@ public class ImportMailServiceImpl implements ImportMailService {
     public void sendMail(String to, String title, String content) {
         mailService.sendMail(to, title, content);
     }
+
+    @Override
+    public void sendHtmlMail(String to, String title, String content) {
+        mailService.sendHtmlMail(to, title, content);
+    }
+
+    @Override
+    public void sendAttachmentsMail(String to, String title, String content, String fileUrl) {
+        mailService.sendAttachmentsMail(to, title, content, fileUrl);
+    }
 }

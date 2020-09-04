@@ -23,7 +23,17 @@ public class MailServiceImplTest {
 
     @Test
     public void testSendSimpleMail() {
-        importMailService.sendMail("cy880708@163.com", "主题：测试邮件发送", "测试邮件发送是否可用");
+        importMailService.sendMail("cy880708@163.com", "主题：测试邮件发送", "测试内容！");
+    }
+
+    @Test
+    public void testSendHtmlMail() {
+        importMailService.sendHtmlMail("cy880708@163.com", "主题：测试HTML邮件发送", "<h1>测试HTML内容</h1>！");
+    }
+
+    @Test
+    public void testSendAttachmentsMail() {
+        importMailService.sendAttachmentsMail("cy880708@163.com", "主题：测试附件邮件发送", "测试附件邮件发送", "/Users/cy/Downloads/领域驱动设计精简版_V2.pdf");
     }
 
 }
