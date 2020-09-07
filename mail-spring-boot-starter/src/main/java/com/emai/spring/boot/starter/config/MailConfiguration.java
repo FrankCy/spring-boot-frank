@@ -25,16 +25,24 @@ public class MailConfiguration {
     @Autowired
     private MailProperties mailProperties;
 
+    private JavaMailSenderImpl javaMailSender;
+
+    @Bean
+    @ConditionalOnMissingBean
+    JavaMailSenderImpl InitJavaMailSender() {
+        this.javaMailSender = new JavaMailSenderImpl();
+        this.javaMailSender.setHost(mailProperties.getHost());
+        this.javaMailSender.setUsername(mailProperties.getUsername());
+        this.javaMailSender.setPassword(mailProperties.getPassword());
+        this.javaMailSender.setDefaultEncoding(mailProperties.getDefaultEncoding());
+        return this.javaMailSender;
+    }
+
     @Bean
     @ConditionalOnMissingBean
     @ConditionalOnProperty(prefix = "spring.mail", value = "enabled", matchIfMissing = true)
     MailService starterService() {
-        JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
-        javaMailSender.setHost(mailProperties.getHost());
-        javaMailSender.setUsername(mailProperties.getUsername());
-        javaMailSender.setPassword(mailProperties.getPassword());
-        javaMailSender.setDefaultEncoding(mailProperties.getDefaultEncoding());
-        return new MailServiceImpl(javaMailSender);
+        return new MailServiceImpl(this.javaMailSender);
     }
 
 }

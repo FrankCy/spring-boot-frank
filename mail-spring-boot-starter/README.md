@@ -1,5 +1,20 @@
 # 发送邮件功能
 ## 使用方式
+- maven配置
+```powershell
+vim ~/.bash_profile
+````
+- - -
+```text
+export MAVEN_HOME=/Users/cy/util/apache-maven-3.6.3
+export PATH=$PATH:$MAVEN_HOME/bin
+```
+
+- - -
+```powershell
+source ~/.bash_profile
+```
+
 - mvn打包
 ```powershell
  mvn clean install -Dmaven.test.skip=true

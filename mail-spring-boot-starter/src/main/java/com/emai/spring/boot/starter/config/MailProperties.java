@@ -14,37 +14,27 @@ public class MailProperties {
     /**
      * 发送邮件的服务器
      */
-    private String host = "sendServer@111.com";
-
-    /**
-     * 发送人
-     */
-    private String fromName = "发送人贾某";
+    private String host = "you.xiang.com";
 
     /**
      * 发送邮件的邮箱地址
      */
-    private String username = "sendUser@163.com";
+    private String username = "youxiang@yx.com";
 
     /**
      * 发送邮件的邮箱密码
      */
-    private String password = "password";
+    private String password = "kmsys_202005";
 
     /**
      * 接收邮件的邮箱
      */
-    private String to = "uuuu@163.com";
+    private String to = "shoujianren@qq.com";
 
     /**
      * 默认编码格式
      */
     private String defaultEncoding = "UTF-8";
-
-    /**
-     * 发送邮件的地址，和上面username一致
-     */
-    private String from = "sendUser@163.com";
 
     public String getHost() {
         return host;
@@ -52,14 +42,6 @@ public class MailProperties {
 
     public void setHost(String host) {
         this.host = host;
-    }
-
-    public String getFromName() {
-        return fromName;
-    }
-
-    public void setFromName(String fromName) {
-        this.fromName = fromName;
     }
 
     public String getUsername() {
@@ -92,13 +74,5 @@ public class MailProperties {
 
     public void setDefaultEncoding(String defaultEncoding) {
         this.defaultEncoding = defaultEncoding;
-    }
-
-    public String getFrom() {
-        return from;
-    }
-
-    public void setFrom(String from) {
-        this.from = from;
     }
 }

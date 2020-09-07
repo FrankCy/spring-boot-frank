@@ -26,12 +26,12 @@ public class MailServiceImpl implements MailService {
     /**
      * 邮件发送人
      */
-    private static final String FROM = "sendUser@163.com";
+    private static final String FROM = "xxxxx@xxxx.com";
 
     /**
      * 邮件发送人名称
      */
-    private static final String FROM_NAME = "发送人张某";
+    private static final String FROM_NAME = "我是机器人";
 
     /**
      * 邮件发送工具类
