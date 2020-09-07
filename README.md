@@ -23,3 +23,5 @@ Spring Boot 是简化Spring应用的创建、运行、调试、部署等一系�
 |spring-boot-guava-retrying|重试| 重试的实现 |
 |spring-boot-lru|缓存对象（最近使用的排在前面）|在研发爬虫的时候，获取IP：PORT，首先爬取大量IP：PORT，存储在对象中，然后复用、替换 |
 |spring-boot-mail|Spring Boot 发邮件|发送普通邮件、HTML邮件、附件邮件 |
+|mail-spring-boot-starter|自定义发送邮件的插件（基于spring-boot-starter-mail实现|发送普通邮件、HTML邮件、附件邮件 |
+|spring-boot-spi|Service Provider Interface（服务提供者框架）|目的是设计一套标准接口，适配不同的业务接口，类似聚合支付的入口 |
