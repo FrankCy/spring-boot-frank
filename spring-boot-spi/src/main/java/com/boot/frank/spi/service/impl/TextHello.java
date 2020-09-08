@@ -11,6 +11,13 @@ import org.springframework.stereotype.Service;
  */
 @Service("textHello")
 public class TextHello implements HelloSpi {
+
+    private TextHello(String source) {
+        if(!"text".equals(source.trim())) {
+            return;
+        }
+    }
+
     @Override
     public void sayHello() {
         System.out.println("TextHello");

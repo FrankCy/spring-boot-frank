@@ -11,6 +11,13 @@ import org.springframework.stereotype.Service;
  */
 @Service("imageHello")
 public class ImageHello implements HelloSpi {
+
+    private ImageHello(String source) {
+        if(!"img".equals(source.trim())) {
+            return;
+        }
+    }
+
     @Override
     public void sayHello() {
         System.out.println("ImageHello");

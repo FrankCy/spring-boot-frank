@@ -28,6 +28,8 @@
         <module>spring-boot-custom-maven-import</module>
         <module>mail-spring-boot-starter</module>
         <module>spring-boot-spi</module>
+        <module>spi-spring-boot-starter</module>
+        <module>pay-spring-boot-starter</module>
     </modules>
 
     <parent>
