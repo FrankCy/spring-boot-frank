@@ -1,0 +1,5 @@
+pay:
+  config:
+    mode: ZHIFUBAO
+server:
+  port: 8081

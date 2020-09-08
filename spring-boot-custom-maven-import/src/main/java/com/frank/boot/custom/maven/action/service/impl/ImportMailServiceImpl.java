@@ -1,4 +1,4 @@
-package com.frank.boot.custom.maven.action.impl;
+package com.frank.boot.custom.maven.action.service.impl;
 
 import com.emai.spring.boot.starter.service.MailService;
 import com.frank.boot.custom.maven.action.service.ImportMailService;

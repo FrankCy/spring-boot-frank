@@ -5,3 +5,7 @@ xf:
 
 server:
   port: 8082
+
+pay:
+  config:
+    mode: WECHAT

@@ -14,13 +14,13 @@ public class PayProperties {
     /**
      * 支付方式
      */
-    private String payMode;
+    private String mode;
 
-    public String getPayMode() {
-        return payMode;
+    public String getMode() {
+        return mode;
     }
 
-    public void setPayMode(String payMode) {
-        this.payMode = payMode;
+    public void setMode(String mode) {
+        this.mode = mode;
     }
 }

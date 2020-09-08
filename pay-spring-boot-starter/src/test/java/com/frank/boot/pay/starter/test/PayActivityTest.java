@@ -1,8 +1,6 @@
 package com.frank.boot.pay.starter.test;
 
-import com.frank.boot.pay.starter.PayStarterApplication;
 import com.frank.boot.pay.starter.strategy.PayActivity;
-import com.frank.boot.pay.starter.strategy.ZhiFuBaoPayStrategy;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,15 +15,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 // 配置启动类
-@SpringBootTest(classes = { PayStarterApplication.class, PayActivity.class }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class PayActivityTest {
 
     @Autowired
-    PayActivity payActivity;
+    private PayActivity payActivity;
 
     @Test
     public void testPayActivity() {
-        PayActivity payActivity = new PayActivity(new ZhiFuBaoPayStrategy());
         payActivity.executePayStrategy();
     }
 

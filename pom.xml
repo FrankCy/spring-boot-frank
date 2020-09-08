@@ -30,6 +30,7 @@
         <module>spring-boot-spi</module>
         <module>spi-spring-boot-starter</module>
         <module>pay-spring-boot-starter</module>
+        <module>spring-boot-pay-starter-demo</module>
     </modules>
 
     <parent>

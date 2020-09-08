@@ -1,4 +1,4 @@
-package com.frank.boot.custom.maven.action.impl;
+package com.frank.boot.custom.maven.action.service.impl;
 
 import com.frank.boot.custom.maven.action.service.ActionService;
 import com.frank.boot.custom.maven.assembly.impl.XfServiceImpl;
