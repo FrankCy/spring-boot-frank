@@ -19,6 +19,10 @@ source ~/.bash_profile
 ```powershell
  mvn clean install -Dmaven.test.skip=true
 ```
+- 指定模块
+```powershell
+mvn clean install -pl model1,model2 -am -Dmaven.test.skip=true
+```
 
 - 需要的项目中引入
 ```xml
