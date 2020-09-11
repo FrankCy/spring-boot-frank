@@ -31,6 +31,8 @@
         <module>spi-spring-boot-starter</module>
         <module>pay-spring-boot-starter</module>
         <module>spring-boot-pay-starter-demo</module>
+        <module>spring-boot-local-common-test</module>
+        <module>spring-boot-base62</module>
     </modules>
 
     <parent>
