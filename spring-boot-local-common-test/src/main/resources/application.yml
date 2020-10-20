@@ -1,0 +1,20 @@
+tiens:
+  storage:
+    # 密钥ID（根绝业务线不同定义）
+    secret-id: AKIDOXREm5MkKflbAXiT4nNq5356g3BGNpJX
+    # 密钥（根绝业务线不同定义）
+    secret-key: 6vTk6UcT4RoujLh6F6ieLmhMlvoYmnXx
+    # 桶
+    #    bucket: storage-bucket-20200908-1303065443
+    #    bucket: young-bucket-1303065443
+    # 桶（根绝业务线不同定义）
+    bucket-name: storage-bucket-20200908-1303065443
+    # 请求云厂商 TENCENT（俄罗斯）/ AWS（德国）
+    cloud-vendors: TENCENT
+    # 站点（一定要与桶匹配上，如果桶和站点不一致，无法正确上传）
+    # 德国（法兰克福）：eu-frankfurt
+    # 俄罗斯（莫斯科）：eu-moscow
+#    site: eu-frankfurt
+    site: eu-moscow
+    # 德国（法兰克福）端点
+#    endpoint-tencent-cos: cos.eu-frankfurt.myqcloud.com

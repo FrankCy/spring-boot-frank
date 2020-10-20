@@ -14,12 +14,12 @@ public class MailProperties {
     /**
      * 发送邮件的服务器
      */
-    private String host = "you.xiang.com";
+    private String host = "exchange.tiens.com";
 
     /**
      * 发送邮件的邮箱地址
      */
-    private String username = "youxiang@yx.com";
+    private String username = "jtmmrobot@tiens.com";
 
     /**
      * 发送邮件的邮箱密码
@@ -29,7 +29,7 @@ public class MailProperties {
     /**
      * 接收邮件的邮箱
      */
-    private String to = "shoujianren@qq.com";
+    private String to = "cy880708@qq.com";
 
     /**
      * 默认编码格式

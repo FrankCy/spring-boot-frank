@@ -25,7 +25,7 @@ public class MailServiceImplTest {
 
     @Test
     public void testSendSimpleMail() {
-        mailService.sendMail("cy880708@163.com", "主题：测试邮件发送", "测试邮件发送是否可用");
+        mailService.sendHtmlMail("cy880708@163.com", "主题：测试邮件发送", "<h1>测试邮件发送是否可用</h1>");
     }
 
 }

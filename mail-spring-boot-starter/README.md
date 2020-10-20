@@ -24,6 +24,16 @@ source ~/.bash_profile
 mvn clean install -pl model1,model2 -am -Dmaven.test.skip=true
 ```
 
+- 指定模块（上传私服）
+```powershell
+mvn -B -U clean deploy -pl model1,model2 -am -Dmaven.test.skip=true
+mvn -B -U clean deploy -pl cloud-api -am -Dmaven.test.skip=true
+# -B：该参数表示让Maven使用批处理模式构建项目，能够避免一些需要人工参与交互而造成的挂起状态。
+# -U：该参数能强制让Maven检查所有SNAPSHOT依赖更新，确保集成基于最新的状态，如果没有该参数，Maven默认以天为单位检查更新，而持续集成的频率应该比这高很多。
+# -pl：选项后可跟随{groupId}:{artifactId}或者所选模块的相对路径(多个模块以逗号分隔)
+# -am：表示同时处理选定模块所依赖的模块
+```
+
 - 需要的项目中引入
 ```xml
 <dependency>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.frank.mybatisplus.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.frank.mybatisplus.entity.User">
+        <id column="id" property="id" />
+        <result column="address" property="address" />
+        <result column="age" property="age" />
+        <result column="creator" property="creator" />
+        <result column="gmt_create" property="gmt_create" />
+        <result column="gmt_modified" property="gmt_modified" />
+        <result column="modifier" property="modifier" />
+        <result column="signature_of_personality" property="signature_of_personality" />
+        <result column="status" property="status" />
+        <result column="user_name" property="user_name" />
+    </resultMap>
+
+</mapper>
