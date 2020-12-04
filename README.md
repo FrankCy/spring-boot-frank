@@ -26,3 +26,8 @@ Spring Boot 是简化Spring应用的创建、运行、调试、部署等一系�
 |mail-spring-boot-starter|自定义发送邮件的插件（基于spring-boot-starter-mail实现|发送普通邮件、HTML邮件、附件邮件 |
 |spring-boot-spi|Service Provider Interface（服务提供者框架）|目的是设计一套标准接口，适配不同的业务接口，类似聚合支付的入口 |
 |spring-boot-mybatis-plus|spring-boot-mybatis-plus| mybaties-plus demo |
+|spring-boot-thrift| thrift demo spring boot 2.3.0R |
+|spring-boot-jdk5| java5新特性练习 |
+|spring-boot-jdk8| java8新特性练习 |
+|spring-boot-jdk10| java10新特性练习 |
+|spring-boot-jdk12| java12新特性练习 |

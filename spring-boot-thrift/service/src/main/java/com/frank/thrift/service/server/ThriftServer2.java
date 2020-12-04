@@ -47,8 +47,8 @@ public class ThriftServer2 {
 
     public void start() {
         try {
-            //thrift支持的scoker有很多种
-            //非阻塞的socker
+            //thrift支持的socket有很多种
+            //非阻塞的socket
             TNonblockingServerSocket socket = new TNonblockingServerSocket(port);
             //THsHaServer 一个高可用的server
             //minWorkerThreads 最小的工作线程2
@@ -77,7 +77,7 @@ public class ThriftServer2 {
 
 
             //---------------thrift数据传输方式------------------------------
-            //1. TSocker            阻塞式Scoker 相当于Java中的ServerSocket
+            //1. Tsocket            阻塞式socket 相当于Java中的ServerSocket
             //2. TFrameTransport    以frame为单位进行数据传输，非阻塞式服务中使用
             //3. TFileTransport     以文件的形式进行传输
             //4. TMemoryTransport   将内存用于IO,Java实现的时候内部实际上是使用了简单的ByteArrayOutputStream

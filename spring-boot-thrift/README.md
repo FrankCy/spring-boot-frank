@@ -21,7 +21,7 @@ Thrift version 0.13.0
 namespace java com.lupf.thriftserver.shriftcode
 namespace py py.com.lupf.thriftserver.shriftcode
 
-//将shrift的数据类型格式转换为java习惯的格式
+//将thrift的数据类型格式转换为java习惯的格式
 typedef i16 short
 typedef i32 int
 typedef i64 long
