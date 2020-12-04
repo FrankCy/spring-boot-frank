@@ -1,0 +1,7 @@
+server:
+  port: 8081
+  thrift:
+    #远端thrift服务IP
+    host: 'localhost'
+    #远端thrift服务端口
+    port: 8899
