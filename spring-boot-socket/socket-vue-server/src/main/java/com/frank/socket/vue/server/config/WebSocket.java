@@ -1,5 +1,6 @@
 package com.frank.socket.vue.server.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.websocket.OnClose;
@@ -18,6 +19,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
  * @author cy
  * @version WebSocket.java, v 0.1 2020年12月08日 1:52 下午 cy Exp $
  */
+@Slf4j
 @Component
 /**
  * 此注解相当于设置访问URL
@@ -28,10 +30,12 @@ public class WebSocket {
     private Session session;
 
     private static CopyOnWriteArraySet<WebSocket> webSockets =new CopyOnWriteArraySet<>();
+
     private static Map<String,Session> sessionPool = new HashMap<String,Session>();
 
     @OnOpen
     public void onOpen(Session session, @PathParam(value="shopId")String shopId) {
+        log.info("shopId -> {}" , shopId);
         this.session = session;
         webSockets.add(this);
         sessionPool.put(shopId, session);
@@ -42,6 +46,11 @@ public class WebSocket {
     public void onClose() {
         webSockets.remove(this);
         System.out.println("【websocket消息】连接断开，总数为:"+webSockets.size());
+    }
+
+    public void onClose(String id) {
+        webSockets.remove(id);
+        System.out.println("【websocket"+ id +"消息】连接断开，总数为:"+webSockets.size());
     }
 
     @OnMessage
@@ -70,6 +79,8 @@ public class WebSocket {
      * @param message
      */
     public void sendTextMessage(String shopId, String message) {
+        log.info("sendTextMessage -> shopId {}", shopId);
+        log.info("sendTextMessage -> message {}", message);
         Session session = sessionPool.get(shopId);
         if (session != null) {
             try {
@@ -86,6 +97,8 @@ public class WebSocket {
      * @param message
      */
     public void sendObjMessage(String shopId, Object message) {
+        log.info("sendObjMessage -> shopId {}", shopId);
+        log.info("sendObjMessage -> message {}", message);
         Session session = sessionPool.get(shopId);
         if (session != null) {
             try {
