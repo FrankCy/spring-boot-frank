@@ -14,5 +14,6 @@
     <modules>
         <module>socket-web</module>
         <module>socket-server</module>
+        <module>socket-vue-server</module>
     </modules>
 </project>
