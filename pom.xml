@@ -36,6 +36,7 @@
         <module>spring-boot-mybatis-plus</module>
         <module>spring-boot-thrift</module>
         <module>spring-boot-jdk5</module>
+        <module>spring-boot-socket</module>
     </modules>
 
     <parent>
