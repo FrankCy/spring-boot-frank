@@ -84,6 +84,8 @@ public class QuartzManager implements ApplicationContextAware {
                     .withSchedule(CronScheduleBuilder.cronSchedule(cronExp))
                     .withIdentity(new TriggerKey(jobName, TRIGGER_DEFAULT_GROUP_NAME))
                     .build();
+            // 为了避免org.quartz.ObjectAlreadyExistsException，在执行前将scheduler进行清理
+            scheduler.clear();
             scheduler.scheduleJob(jobDetail, trigger);
             scheduler.start();
             return true;
