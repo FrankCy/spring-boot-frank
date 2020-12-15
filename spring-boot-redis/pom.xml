@@ -22,6 +22,7 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!-- redis核心操作类 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
@@ -33,17 +34,20 @@
             <artifactId>commons-pool2</artifactId>
         </dependency>
 
+        <!-- bean处理 -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
 
+        <!-- json处理 -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.70</version>
         </dependency>
 
+        <!-- uuid -->
         <dependency>
             <groupId>com.ubirch.util</groupId>
             <artifactId>uuid_2.11</artifactId>

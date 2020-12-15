@@ -82,7 +82,7 @@ public class RedisController {
      * @return
      */
     public String find(RedisTestVO redisTestVO) {
-        return "";
+        return String.valueOf(redisUtil.get(redisTestVO.getKey()));
     }
 
     /**
@@ -90,7 +90,15 @@ public class RedisController {
      * @return
      */
     public String update(RedisTestVO redisTestVO) {
-        return "";
+        String key = redisTestVO.getKey();
+        if(redisUtil.hasKey(key)) {
+            log.info("修改前：{}", redisUtil.get(key).toString());
+            redisUtil.set(key, "修改后");
+            log.info("修改后：{}", redisUtil.get(key).toString());
+        } else {
+            return "缓存中没有找到KEY -> " + key + " 对应的数据，修改个吊毛";
+        }
+        return "修改成功";
     }
 
     /**
@@ -98,7 +106,14 @@ public class RedisController {
      * @return
      */
     public String delete(RedisTestVO redisTestVO) {
-        return "";
+        String key = redisTestVO.getKey();
+        if(redisUtil.hasKey(key)) {
+            redisUtil.del(key);
+            log.info("删除对象{}", key);
+            return "删除成功";
+        } else {
+            return "缓存中没有找到KEY -> " + key + " 对应的数据，删除失败";
+        }
     }
 
 }
