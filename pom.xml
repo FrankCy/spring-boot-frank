@@ -38,6 +38,7 @@
         <module>spring-boot-jdk5</module>
         <module>spring-boot-socket</module>
         <module>spring-boot-common</module>
+        <module>spring-boot-redis</module>
     </modules>
 
     <parent>
