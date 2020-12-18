@@ -17,7 +17,7 @@ source ~/.bash_profile
 
 - mvn打包
 ```powershell
- mvn clean install -Dmaven.test.skip=true
+mvn clean install -Dmaven.test.skip=true
 ```
 - 指定模块
 ```powershell

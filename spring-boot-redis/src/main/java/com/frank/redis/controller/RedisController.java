@@ -33,6 +33,26 @@ public class RedisController {
     private RedisUtil redisUtil;
 
     /**
+     * 新增操作
+     */
+    private static String INSERT = "c";
+
+    /**
+     * 查询操作
+     */
+    private static String FIND = "r";
+
+    /**
+     * 更新操作
+     */
+    private static String UPDATE = "u";
+
+    /**
+     * 删除操作
+     */
+    private static String DELETE = "d";
+
+    /**
      * 新增
      * @return
      */
@@ -43,16 +63,16 @@ public class RedisController {
         if(StringUtils.isEmpty(operationFlag)) {
             return "operationFlag 不能为空";
         }
-        if("c".equals(operationFlag)) {
+        if(INSERT.equals(operationFlag)) {
             return insert(redisTestVO);
         } else
-        if("r".equals(operationFlag)) {
+        if(FIND.equals(operationFlag)) {
             return find(redisTestVO);
         } else
-        if("u".equals(operationFlag)) {
+        if(UPDATE.equals(operationFlag)) {
             return update(redisTestVO);
         } else
-        if("d".equals(operationFlag)) {
+        if(DELETE.equals(operationFlag)) {
             return delete(redisTestVO);
         }
 

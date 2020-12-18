@@ -15,6 +15,7 @@ Spring Boot 是简化Spring应用的创建、运行、调试、部署等一系�
 |spring-boot-logback|日志处理|Logback|
 |spring-boot-oauth2.0|安全认证|使用spring boot security 实现oauth2.0安全|
 |spring-boot-redis-cluster|缓存|Redis集群配置|
+|spring-boot-redis|缓存|Redis CRUD|
 |spring-boot-source-code|源码|Spring 源码分析|
 |spring-boot-swagger2|文档编写（API）|边开发边写API文档|
 |spring-boot-symmetric-encryption|加密|通过spring boot 实现加密|
