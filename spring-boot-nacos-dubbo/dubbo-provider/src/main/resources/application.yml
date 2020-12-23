@@ -1,23 +1,38 @@
-server:
-  port: 8081
-
 spring:
   application:
     name: nacos-dubbo-provider
 
+# nacos配置
 nacos:
+  # 服务器地址
   service-address: 127.0.0.1
+  # 端口
   port: 8848
+# 服务
 dubbo:
+  # 注册
   registry:
+    # 注册dubbo服务地址以及命名空间
     address: nacos://${nacos.service-address}:${nacos.port}?namespace=dubbo-test
+  # 协议
   protocol:
+    # dubbo
     name: dubbo
-    port: 20889
+    # 端口
+    port: 20884
+  # 扫描
   scan:
-    base-packages: com.frank.nacos.dubbo.*.service.impl;
+    # 扫描的服务实现
+    base-packages: com.frank.nacos.dubbo.*.service.impl
+  # 提供者的配置
   provider:
+    # 超时时间50000
     timeout: 10000
-    retries: 1
-  application:
-    name: dubbo-name
+    # 重试次数 0
+    retries: 0
+# 服务端配置
+server:
+  # servlet
+  servlet:
+    # 请求加前缀
+    context-path: /cloud
