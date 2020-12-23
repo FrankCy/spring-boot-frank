@@ -32,3 +32,5 @@ Spring Boot 是简化Spring应用的创建、运行、调试、部署等一系�
 |spring-boot-jdk8| java8新特性练习 |
 |spring-boot-jdk10| java10新特性练习 |
 |spring-boot-jdk12| java12新特性练习 |
+|spring-boot-nacos-dubbo| Spring boot 2.3.0.R 与 Nacos Dubbo的例子 |
+|spring-boot-jedis| Jedis 对 redis crud以及分布式锁的实现 |

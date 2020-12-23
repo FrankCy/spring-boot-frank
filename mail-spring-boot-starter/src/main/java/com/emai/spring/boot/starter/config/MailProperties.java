@@ -14,17 +14,17 @@ public class MailProperties {
     /**
      * 发送邮件的服务器
      */
-    private String host = "exchange.tiens.com";
+    private String host = "--";
 
     /**
      * 发送邮件的邮箱地址
      */
-    private String username = "jtmmrobot@tiens.com";
+    private String username = "--";
 
     /**
      * 发送邮件的邮箱密码
      */
-    private String password = "kmsys_202005";
+    private String password = "--";
 
     /**
      * 接收邮件的邮箱
