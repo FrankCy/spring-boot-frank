@@ -23,20 +23,19 @@ public class JedisLock {
     private String lock_key = "redis_lock";
 
     /**
-     * 过期时间
+     * 过期时间（5秒）
      */
-    protected long internalLockLeaseTime = 30000;
+    protected int internalLockLeaseTime = 5;
 
     /**
      * 获取锁的超时时间
      */
-    private long timeout = 999999;
+    private long timeout = 3000;
 
     /**
      * 参数
      */
-    SetParams params = SetParams.setParams().nx().px(internalLockLeaseTime);
-
+    SetParams params = SetParams.setParams().ex(internalLockLeaseTime);
 
     @Autowired
     private JedisPool jedisPool;
