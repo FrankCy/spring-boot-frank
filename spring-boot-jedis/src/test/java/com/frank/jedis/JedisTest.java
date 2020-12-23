@@ -102,7 +102,7 @@ public class JedisTest {
                 }
                 return "累计成功 -》" + countNew;
             } else {
-                jedisUtil.set(param, String.valueOf(1L), 5);
+                jedisUtil.set(param, String.valueOf(0L), 5);
                 return "首次请求，添加个有效参数5S";
             }
         } finally {
