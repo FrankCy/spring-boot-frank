@@ -1,0 +1,19 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: spring-boot-jedis
+
+# 这里我们是自己去实例化jedis的相关Bean（JedisPoolConfig、JedisPool...），并没有使用到RedisTemplate
+# 所以并不需要像网上一些教程那样配置在spring节点下（spring.redis.jedis.pool.max-active...）
+jedis:
+  host: 127.0.0.1
+  password: 123456
+  port: 6379
+  timeout: 2000
+  maxTotal: 15 # 最大连接数
+  maxIdle: 10 # 最大空闲连接
+  minIdle: 5 # 最小空闲连接
+  maxWaitMillis: 10000 # 获取连接最大等待时间
+  testOnBorrow: true # 获取连接时检测是否可用
