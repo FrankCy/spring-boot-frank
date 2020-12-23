@@ -26,7 +26,7 @@ public class MailServiceImpl implements MailService {
     /**
      * 邮件发送人
      */
-    private static final String FROM = "jtmmrobot@tiens.com";
+    private static final String FROM = "--";
 
     /**
      * 邮件发送人名称

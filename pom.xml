@@ -31,7 +31,6 @@
         <module>spi-spring-boot-starter</module>
         <module>pay-spring-boot-starter</module>
         <module>spring-boot-pay-starter-demo</module>
-        <module>spring-boot-local-common-test</module>
         <module>spring-boot-base62</module>
         <module>spring-boot-mybatis-plus</module>
         <module>spring-boot-thrift</module>
@@ -40,9 +39,6 @@
         <module>spring-boot-common</module>
         <module>spring-boot-redis</module>
         <module>spring-boot-nacos-dubbo</module>
-        <module>spring-boot-nacos-dubbo/provider</module>
-        <module>spring-boot-nacos-dubbo/consumer</module>
-        <module>spring-boot-nacos-dubbo/common-api</module>
         <module>spring-boot-jedis</module>
     </modules>
 
