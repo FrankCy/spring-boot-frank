@@ -2,7 +2,9 @@ package com.frank.jedis.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.params.SetParams;
 
 /**
  *
@@ -13,24 +15,48 @@ import redis.clients.jedis.JedisPool;
 @Component
 public class JedisUtil {
 
-
     @Autowired
     private JedisPool jedisPool;
-
+    
     /**
      * 写入缓存
      * @param key
      * @param value
      * @return
      */
-    public boolean set (final String key,String  value){
+    public boolean set (final String key,String value){
+        Jedis jedis = getJedis();
         boolean result = false;
         try {
-            jedisPool.getResource().set(key, value);
+            jedis.set(key, value);
             result = true;
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("set cache error");
+        } finally {
+            jedis.close();
+        }
+        return result ;
+    }
+
+    /**
+     * 写入缓存（时效）
+     * @param key
+     * @param value
+     * @return
+     */
+    public boolean set (final String key,String value, Integer time){
+        boolean result = false;
+        Jedis jedis = getJedis();
+        try {
+            SetParams setParams = SetParams.setParams().ex(time);
+            jedis.set(key, value, setParams);
+            result = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("set cache error");
+        } finally {
+            jedis.close();
         }
         return result ;
     }
@@ -41,8 +67,16 @@ public class JedisUtil {
      * @return
      */
     public String get(final String key) {
-        String result =null;
-        result = jedisPool.getResource().get(key);
+        String result = null;
+        Jedis jedis = getJedis();
+        try {
+            result = jedis.get(key);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("get cache error");
+        } finally {
+            jedis.close();
+        }
         return result;
     }
 
@@ -52,8 +86,16 @@ public class JedisUtil {
      * @param key
      */
     public void del(final String key) {
-        if(key!=null&&key.length()>=1&&!key.equals("")&&jedisPool.getResource().exists(key)){
-            jedisPool.getResource().del(key);
+        Jedis jedis = getJedis();
+        try {
+            if(key!=null&&key.length()>=1&&!key.equals("")&&jedis.exists(key)){
+                jedis.del(key);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("del cache error");
+        } finally {
+            jedis.close();
         }
     }
 
@@ -63,25 +105,15 @@ public class JedisUtil {
      * @return
      */
     public boolean exists(final String key) {
-        return jedisPool.getResource().exists(key);
-    }
-
-    /**
-     * 写入缓存（规定缓存时间）
-     * @param key
-     * @param value
-     * @param expireSecond
-     * @return
-     */
-    public boolean set(final String key,String value,Long expireSecond) {
         boolean result = false;
+        Jedis jedis = getJedis();
         try {
-            // NX代表不存在才set,EX代表秒,NX代表毫秒
-            jedisPool.getResource().set(key, value, "NX", "EX", expireSecond);
-            result = true;
+            result = jedis.exists(key);
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("set cache error on time");
+            System.out.println("exists cache error");
+        } finally {
+            jedis.close();
         }
         return result;
     }
@@ -98,8 +130,40 @@ public class JedisUtil {
      */
     public Long lpush(String key, String... strs) {
         Long res = null;
-        res = jedisPool.getResource().lpush(key, strs);
+        Jedis jedis = getJedis();
+        try {
+            res = jedis.lpush(key, strs);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("lpush cache error");
+        } finally {
+            jedis.close();
+        }
         return res;
+    }
+
+    /**
+     * 增加increment
+     * @param key
+     * @param increment
+     * @return
+     */
+    public Long incr(String key, Long increment) {
+        Long incrResult = null;
+        Jedis jedis = getJedis();
+        try {
+            incrResult = jedis.incrBy(key, 1L);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("incr cache error");
+        } finally {
+            jedis.close();
+        }
+        return incrResult;
+    }
+    
+    public Jedis getJedis() {
+        return jedisPool.getResource();
     }
 
 }
