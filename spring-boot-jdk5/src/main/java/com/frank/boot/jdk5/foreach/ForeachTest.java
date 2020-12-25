@@ -24,6 +24,26 @@ public class ForeachTest {
         }
     }
 
+    /***
+     * 具体编译成什么类型还的根据循环数据实际的数据类型，例如：
+     *
+     * //int数组 foreach
+     * int[] ints = new int[]{1, 2, 3, 4, 5};
+     * for(int i : ints){
+     *     System.out.println("i: " + i);
+     * }
+     *
+     * //class反编译结果
+     * int[] ints = new int[]{1, 2, 3, 4, 5};
+     * int[] var9 = ints;
+     * int var4 = ints.length;
+     *
+     * for(int var5 = 0; var5 < var4; ++var5) {
+     *     int i = var9[var5];
+     *     System.out.println("i: " + i);
+     * }
+     */
+
     public static void main(String[] args) {
         List<String> testList = new ArrayList<>();
         testList.add("1");

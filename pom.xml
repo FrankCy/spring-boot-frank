@@ -40,6 +40,7 @@
         <module>spring-boot-redis</module>
         <module>spring-boot-nacos-dubbo</module>
         <module>spring-boot-jedis</module>
+        <module>spring-boot-redisson</module>
     </modules>
 
     <parent>
