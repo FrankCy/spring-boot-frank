@@ -1,6 +1,9 @@
 package com.frank.redisson.controller;
 
+import com.frank.redisson.vo.RedissonVO;
 import lombok.extern.slf4j.Slf4j;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class RedissonController {
 
     @Autowired
-    //private RedissonClient redissonClient;
+    private RedissonClient redissonClient;
 
     /**
      * 锁练习
@@ -27,16 +30,16 @@ public class RedissonController {
      */
     @RequestMapping(value = "/lockDemo" , method = RequestMethod.GET)
     @ResponseBody
-    public String test() {
-        //RLock lock = redissonClient.getLock(lockKey);
-        //try {
-        //    lock.lock();
-        //    Thread.sleep(10000);
-        //} catch (Exception e) {
-        //
-        //} finally {
-        //    lock.unlock();
-        //}
+    public String test(RedissonVO redissonVO) {
+        RLock lock = redissonClient.getLock("lockKey");
+        try {
+            lock.lock();
+            Thread.sleep(10000);
+        } catch (Exception e) {
+
+        } finally {
+            lock.unlock();
+        }
         return "已解锁";
     }
 
