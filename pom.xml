@@ -41,6 +41,7 @@
         <module>spring-boot-nacos-dubbo</module>
         <module>spring-boot-jedis</module>
         <module>spring-boot-redisson</module>
+        <module>spring-boot-nacos-api</module>
     </modules>
 
     <parent>

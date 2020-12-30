@@ -26,6 +26,7 @@ mvn clean install -pl model1,model2 -am -Dmaven.test.skip=true
 
 - 指定模块（上传私服）
 ```powershell
+java -Dfile.encoding=utf-8 -jar test.jar
 mvn -B -U clean deploy -pl model1,model2 -am -Dmaven.test.skip=true
 mvn -B -U clean deploy -pl cloud-api -am -Dmaven.test.skip=true
 # -B：该参数表示让Maven使用批处理模式构建项目，能够避免一些需要人工参与交互而造成的挂起状态。

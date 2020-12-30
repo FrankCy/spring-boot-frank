@@ -2,6 +2,7 @@ package com.frank.redisson.controller;
 
 import com.frank.redisson.vo.RedissonVO;
 import lombok.extern.slf4j.Slf4j;
+import org.redisson.api.RBucket;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,9 @@ public class RedissonController {
     @RequestMapping(value = "/lockDemo" , method = RequestMethod.GET)
     @ResponseBody
     public String test(RedissonVO redissonVO) {
-        RLock lock = redissonClient.getLock("lockKey");
+        RLock lock = redissonClient.getLock(redissonVO.getKey());
+        RBucket<Object> bucket = redissonClient.getBucket("buckets");
+        bucket.set("isMy");
         try {
             lock.lock();
             Thread.sleep(10000);

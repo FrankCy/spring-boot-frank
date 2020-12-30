@@ -35,3 +35,4 @@ Spring Boot 是简化Spring应用的创建、运行、调试、部署等一系�
 |spring-boot-nacos-dubbo| Spring boot 2.3.0.R 与 Nacos Dubbo的例子 | Dubbo Nacos 脚手架|
 |spring-boot-jedis| Jedis 对 redis crud以及分布式锁的实现 |
 |spring-boot-redisson| Redisson 对 redis crud以及分布式锁的实现 |
+|spring-boot-nacos-api| nacos web api |
