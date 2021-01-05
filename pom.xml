@@ -42,6 +42,7 @@
         <module>spring-boot-jedis</module>
         <module>spring-boot-redisson</module>
         <module>spring-boot-nacos-api</module>
+        <module>spring-boot-excerpt</module>
     </modules>
 
     <parent>

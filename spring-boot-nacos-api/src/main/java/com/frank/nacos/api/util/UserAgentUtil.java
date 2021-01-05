@@ -2,11 +2,6 @@ package com.frank.nacos.api.util;
 
 import java.util.Random;
 
-/**
- * @Description: 处理url
- * @Date: 2020年4月24日
- * @Author: zl
- */
 public class UserAgentUtil {
 
     public static final String[] AGENTS = new String[]{
