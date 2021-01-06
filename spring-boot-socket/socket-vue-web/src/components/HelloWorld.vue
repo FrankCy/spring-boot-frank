@@ -1,51 +1,139 @@
 <template>
-  <div>
-    <h1>测试webSocket</h1>
-    <button @click="getWebsocket">点击请求后台数据</button>
-    <div id ="aaa" style="height: 300px; width: 400px; overflow-y: scroll; background: #333; color: #aaa; padding: 10px;"></div>
+  <div class="hello">
+    <h1> websocket 消息推送测试：{{data}}</h1>
+
+
   </div>
 </template>
+
 <script>
 export default {
-  created() { // 页面创建生命周期函数
+  name: 'HelloWorld',
+  data () {
+    return {
+      data:0,
+      timeout: 28 * 1000,//30秒一次心跳
+      timeoutObj: null,//心跳心跳倒计时
+      serverTimeoutObj: null,//心跳倒计时
+      timeoutnum: null,//断开 重连倒计时
+      websocket: null,
+    }
+  },
+  created () {
+    // 初始化websocket
     this.initWebSocket()
   },
-  destroyed: function () { // 离开页面生命周期函数
-    this.websocketclose();
-  },
-  methods: {
-    initWebSocket: function () {
-      // WebSocket与普通的请求所用协议有所不同，ws等同于http，wss等同于https
-      this.websock = new WebSocket("ws://localhost:8080/websocket/DPS007");
-      this.websock.onopen = this.websocketonopen;
-      this.websock.onerror = this.websocketonerror;
-      this.websock.onmessage = this.websocketonmessage;
-      this.websock.onclose = this.websocketclose;
+  methods:{
+    initWebSocket () {
+      let url = 'ws://localhost:8086/websocket/testsocket'
+      this.websocket = new WebSocket(url)
+      // 连接错误
+      this.websocket.onerror = this.setErrorMessage
+
+      // 连接成功
+      this.websocket.onopen = this.setOnopenMessage
+
+      // 收到消息的回调
+      this.websocket.onmessage = this.setOnmessageMessage
+
+      // 连接关闭的回调
+      this.websocket.onclose = this.setOncloseMessage
+
+      // 监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+      window.onbeforeunload = this.onbeforeunload
     },
-    websocketonopen: function () {
-      console.log("WebSocket连接成功");
+    reconnect () { // 重新连接
+      if(this.lockReconnect) return;
+      this.lockReconnect = true;
+      //没连接上会一直重连，设置延迟避免请求过多
+      this.timeoutnum && clearTimeout(this.timeoutnum);
+      this.timeoutnum = setTimeout(() => {
+        //新连接
+        this.initWebSocket();
+        this.lockReconnect = false;
+      }, 5000);
     },
-    websocketonerror: function (e) {
-      console.log("WebSocket连接发生错误" + e);
+    reset () { // 重置心跳
+      // 清除时间
+      clearTimeout(this.timeoutObj);
+      clearTimeout(this.serverTimeoutObj);
+      // 重启心跳
+      this.start();
     },
-    websocketonmessage: function (e) {
-      console.log(e.data);                // console.log(e);
-      document.getElementById('aaa').innerHTML=e.data
+    start () { // 开启心跳
+      this.timeoutObj && clearTimeout(this.timeoutObj);
+      this.serverTimeoutObj && clearTimeout(this.serverTimeoutObj);
+      this.timeoutObj = setTimeout(() => {
+        // 这里发送一个心跳，后端收到后，返回一个心跳消息，
+        if (this.websocket && this.websocket.readyState == 1) { // 如果连接正常
+          this.websocketsend('heartbeat');
+        } else { // 否则重连
+          this.reconnect();
+        }
+        this.serverTimeoutObj = setTimeout(() => {
+          //超时关闭
+          this.websocket.close();
+        }, this.timeout);
+
+      }, this.timeout)
     },
-    websocketclose: function (e) {
-      console.log("connection closed ");
+    setOnmessageMessage (event) {
+      let obj = JSON.parse(event.data);
+      console.log("obj",obj)
+      switch(obj.type) {
+        case 'heartbeat':
+          //收到服务器信息，心跳重置
+          this.reset();
+          break;
+        case 'sendMessage':
+          this.data = obj.data
+          console.log("接收到的服务器消息：",obj.data)
+      }
+
     },
-    getWebsocket:function() {
-      let url = "http://localhost:8080/xdx/text?shipId=DPS007"
-      // 这里只是一个基于axios的ajax请求，你可以换成你的请求格式
-      // this.$ajax.get(url)
-      // 不想安装axios了，这里使用最原始的 js去请求
-      var xhr = new XMLHttpRequest () ;
-      xhr.open('get',url,true);
-      xhr.send();
-    }
+    setErrorMessage () {
+      //重连
+      this.reconnect();
+      console.log("WebSocket连接发生错误" + '   状态码：' + this.websocket.readyState)
+    },
+    setOnopenMessage () {
+      //开启心跳
+      this.start();
+      console.log("WebSocket连接成功" + '   状态码：' + this.websocket.readyState)
+    },
+    setOncloseMessage () {
+      //重连
+      this.reconnect();
+      console.log( "WebSocket连接关闭" + '   状态码：' + this.websocket.readyState)
+    },
+    onbeforeunload () {
+      this.closeWebSocket();
+    },
+    //websocket发送消息
+    websocketsend(messsage) {
+      this.websocket.send(messsage)
+    },
+    closeWebSocket() { // 关闭websocket
+      this.websocket.close()
+    },
   }
 }
 </script>
-<style >
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+h1, h2 {
+  font-weight: normal;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}
 </style>

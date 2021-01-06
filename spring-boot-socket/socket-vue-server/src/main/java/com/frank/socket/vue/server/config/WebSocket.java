@@ -1,5 +1,6 @@
 package com.frank.socket.vue.server.config;
 
+import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -29,33 +30,62 @@ public class WebSocket {
 
     private Session session;
 
-    private static CopyOnWriteArraySet<WebSocket> webSockets =new CopyOnWriteArraySet<>();
+    private static CopyOnWriteArraySet<WebSocket> webSockets = new CopyOnWriteArraySet<>();
 
-    private static Map<String,Session> sessionPool = new HashMap<String,Session>();
+    private static Map<String, Session> sessionPool = new HashMap<String, Session>();
 
     @OnOpen
-    public void onOpen(Session session, @PathParam(value="shopId")String shopId) {
-        log.info("shopId -> {}" , shopId);
+    public void onOpen(Session session, @PathParam(value = "shopId") String shopId) {
+        log.info("shopId -> {}", shopId);
         this.session = session;
         webSockets.add(this);
         sessionPool.put(shopId, session);
-        System.out.println("【websocket消息】有新的连接，总数为:"+webSockets.size());
+        System.out.println("【websocket消息】有新的连接，总数为:" + webSockets.size());
     }
 
     @OnClose
     public void onClose() {
         webSockets.remove(this);
-        System.out.println("【websocket消息】连接断开，总数为:"+webSockets.size());
+        System.out.println("【websocket消息】连接断开，总数为:" + webSockets.size());
     }
 
     public void onClose(String id) {
         webSockets.remove(id);
-        System.out.println("【websocket"+ id +"消息】连接断开，总数为:"+webSockets.size());
+        System.out.println("【websocket" + id + "消息】连接断开，总数为:" + webSockets.size());
     }
 
     @OnMessage
-    public void onMessage(String message) {
-        System.out.println("【websocket消息】收到客户端消息:"+message);
+    public void onMessage(String message, Session session) {
+        log.info("收到的信息:"+message);
+        Map<String, Object> maps = new HashMap<>();
+        maps.put("type", message);
+        sendInfo(maps);
+    }
+
+    /**
+     * 群发自定义消息
+     * */
+    public static void sendInfo(Map obj) {
+        for (WebSocket item : webSockets) {
+            try {
+                item.sendMessage(obj);
+            } catch (Exception e) {
+                continue;
+            }
+        }
+    }
+
+    /**
+     * 实现服务器主动推送
+     */
+    public void sendMessage(Map obj) {
+        try {
+            synchronized (this.session) {
+                this.session.getBasicRemote().sendText((JSON.toJSONString(obj)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -63,8 +93,7 @@ public class WebSocket {
      * @param message
      */
     public void sendAllMessage(String message) {
-        for(WebSocket webSocket : webSockets) {
-            System.out.println("【websocket消息】广播消息:"+message);
+        for (WebSocket webSocket : webSockets) {
             try {
                 webSocket.session.getAsyncRemote().sendText(message);
             } catch (Exception e) {
@@ -80,7 +109,7 @@ public class WebSocket {
      */
     public void sendTextMessage(String shopId, String message) {
         log.info("sendTextMessage -> shopId {}", shopId);
-        log.info("sendTextMessage -> message {}", message);
+        //log.info("sendTextMessage -> message {}", message);
         Session session = sessionPool.get(shopId);
         if (session != null) {
             try {
@@ -98,7 +127,7 @@ public class WebSocket {
      */
     public void sendObjMessage(String shopId, Object message) {
         log.info("sendObjMessage -> shopId {}", shopId);
-        log.info("sendObjMessage -> message {}", message);
+        //log.info("sendObjMessage -> message {}", message);
         Session session = sessionPool.get(shopId);
         if (session != null) {
             try {

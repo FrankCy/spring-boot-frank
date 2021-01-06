@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -32,6 +34,7 @@ public class SocketVueServiceImpl implements SocketVueService {
         List<User> userList = new ArrayList<>();
         for(int i=0; i<10; i++) {
             Thread.sleep(1000);
+            Map map = new HashMap();
             if(i > 5) {
                 User user = new User();
                 user.setId(i);
@@ -40,9 +43,10 @@ public class SocketVueServiceImpl implements SocketVueService {
                 user.setDescription("描述信息"+i);
                 userList.add(user);
                 testObj.setUserList(userList);
-                webSocket.sendTextMessage(shipId, JSON.toJSONString(testObj));
+                map.put("sendMessage", testObj);
+                webSocket.sendTextMessage(shipId, JSON.toJSONString(map));
             } else {
-                webSocket.sendTextMessage(shipId, JSON.toJSONString(testObj));
+                webSocket.sendTextMessage(shipId, JSON.toJSONString(map));
             }
             if (i == 9) {
                 webSocket.onClose();
