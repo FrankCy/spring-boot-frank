@@ -43,6 +43,7 @@
         <module>spring-boot-redisson</module>
         <module>spring-boot-nacos-api</module>
         <module>spring-boot-excerpt</module>
+        <module>spring-boot-distributed/id-generator-leaf</module>
     </modules>
 
     <parent>

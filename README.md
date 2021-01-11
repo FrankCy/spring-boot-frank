@@ -36,3 +36,4 @@ Spring Boot 是简化Spring应用的创建、运行、调试、部署等一系�
 |spring-boot-jedis| Jedis 对 redis crud以及分布式锁的实现 |
 |spring-boot-redisson| Redisson 对 redis crud以及分布式锁的实现 |
 |spring-boot-nacos-api| nacos web api |
+|spring-boot-distributed| 分布式功能实践 |

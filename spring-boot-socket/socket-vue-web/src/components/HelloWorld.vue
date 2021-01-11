@@ -25,8 +25,9 @@ export default {
   },
   methods:{
     initWebSocket () {
-      let url = 'ws://localhost:8086/websocket/testsocket'
+      let url = 'ws://localhost:8081/websocket/refreshProcess'
       this.websocket = new WebSocket(url)
+
       // 连接错误
       this.websocket.onerror = this.setErrorMessage
 
@@ -114,6 +115,7 @@ export default {
       this.websocket.send(messsage)
     },
     closeWebSocket() { // 关闭websocket
+      console.log('关闭websocket')
       this.websocket.close()
     },
   }

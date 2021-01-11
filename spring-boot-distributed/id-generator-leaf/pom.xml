@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.18.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>spring-boot-test</groupId>
+    <artifactId>id-generator-leaf</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <artifactId>leaf-boot-starter</artifactId>
+            <groupId>com.sankuai.inf.leaf</groupId>
+            <version>1.0.1-RELEASE</version>
+            <scope>system</scope>
+            <!-- 使用本地的代码，首先把工程 mvn clean install，在默认目录下生成了对应的jar -->
+            <systemPath>${basedir}/lib/leaf.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.sankuai.inf.leaf</groupId>
+            <artifactId>leaf-server</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+    </dependencies>
+
+</project>
