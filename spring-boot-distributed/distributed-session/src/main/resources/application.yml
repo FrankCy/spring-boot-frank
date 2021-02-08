@@ -1,3 +1,18 @@
 server:
   port: 8081
 
+spring:
+  # 增加redis配置
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+  # 增加session配置
+  session:
+    # 存储到redis中（同时支持存入mongodb等其他存储中）
+    store-type: redis
+    # 过期时间（S），默认1800秒
+    timeout: 3600
+    redis:
+      # session存储在redis中的前缀
+      namespace: login
