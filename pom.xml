@@ -46,6 +46,7 @@
         <module>spring-boot-distributed/id-generator-leaf</module>
         <module>spring-boot-distributed/distributed-session</module>
         <module>spring-boot-restful</module>
+        <module>spring-boot-distributed/distributed-job</module>
     </modules>
 
     <parent>
