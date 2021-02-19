@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 // 被spring管理
 @Component
 // 声明启动调度（当启动时，才会生效，加到类只对类有效，加到启动类，即对目录下使用调度的注解函数@Scheduled都生效）
-@EnableScheduling
+//@EnableScheduling
 public class MyJob {
 
     /**
