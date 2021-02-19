@@ -47,6 +47,7 @@
         <module>spring-boot-distributed/distributed-session</module>
         <module>spring-boot-restful</module>
         <module>spring-boot-distributed/distributed-job</module>
+        <module>spring-boot-distributed/distributed-current-limit</module>
     </modules>
 
     <parent>
