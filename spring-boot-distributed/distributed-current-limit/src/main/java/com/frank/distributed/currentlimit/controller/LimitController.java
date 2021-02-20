@@ -1,7 +1,9 @@
 package com.frank.distributed.currentlimit.controller;
 
+import com.frank.distributed.currentlimit.service.LimiterService;
 import com.google.common.util.concurrent.RateLimiter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,5 +37,23 @@ public class LimitController {
         }
 
     }
+
+    /**
+     * 直接在控制台就可以对controller api进行限流，通过自定义限流异常返回给用户信息
+     * @return
+     */
+    @GetMapping("/sentinel")
+    public String sentinel() {
+        return "sentinel";
+    }
+
+    @Autowired
+    private LimiterService limiterService;
+
+    @GetMapping("/sentinelForService")
+    public String sentinelForService() {
+        return limiterService.process();
+    }
+
 
 }

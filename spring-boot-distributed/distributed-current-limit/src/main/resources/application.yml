@@ -1,3 +1,11 @@
 server:
-  port: 8081
+  port: 8083
 
+spring:
+  application:
+    name: distributed-current-limit
+  cloud:
+    # sentinel 仪表盘配置
+    sentinel:
+      transport:
+        dashboard: localhost:8080

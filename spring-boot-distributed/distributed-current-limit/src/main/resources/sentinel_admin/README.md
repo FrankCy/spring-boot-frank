@@ -8,3 +8,9 @@
 # 记得改文件名
 java -Dserver.port=8080 -Dcsp.sentinel.dashboard.server=localhost:8080 -Dproject.name=sentinel-dashboard -jar sentinel-dashboard.jar
 ```
+
+- 访问
+[http://localhost:8080/](http://localhost:8080/)
+- 用户名 / 密码
+sentinel / sentinel
+
