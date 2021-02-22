@@ -48,6 +48,7 @@
         <module>spring-boot-restful</module>
         <module>spring-boot-distributed/distributed-job</module>
         <module>spring-boot-distributed/distributed-current-limit</module>
+        <module>spring-boot-distributed/distributed-sub-database-table</module>
     </modules>
 
     <parent>
