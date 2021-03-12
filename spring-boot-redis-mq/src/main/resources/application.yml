@@ -1,0 +1,23 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: spring-boot-redis-mq
+  # Redis 数据库索引（默认为 0）
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+    ## Jedis
+    jedis:
+      pool:
+        # 最大连接数（负数表示没有限制）
+        max-active: 8
+        # 最大阻塞等待时间（负数表示没有限制）
+        max-wait: 0
+        # 最大空闲连接
+        max-idle: 8
+        # 最小空闲链接
+        min-idle: 0
+    # 超时时间5s
+    timeout: 5000
