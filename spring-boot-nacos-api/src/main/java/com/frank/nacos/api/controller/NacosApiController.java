@@ -18,18 +18,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value = "/nacos")
 public class NacosApiController {
 
-    private static final String URL = "http://127.0.0.1:8848/nacos/v1/cs/configs?dataId=abc.yaml&group=DEFAULT_GROUP&tenant=cy-namespace";
+    private static final String URL = "http://127.0.0.1:8848/nacos/v1/cs/configs?dataId=nacos_config_test.yaml&group=DEFAULT_GROUP&tenant=cy-namespace";
 
     /**
      * 读取yaml配置
      * @return
      */
-    @RequestMapping(value = "/findConfig" , method = RequestMethod.GET)
-    @ResponseBody
-    public String operation() {
+    @RequestMapping(value = "/findConfig")
+    public String findConfig() {
         String result = HttpClientUtil.get(URL,"UTF-8");
         log.info("result -> {}", result);
-        return result;
+        return "result success";
     }
 
 }
