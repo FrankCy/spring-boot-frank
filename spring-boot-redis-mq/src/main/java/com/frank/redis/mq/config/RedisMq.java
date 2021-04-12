@@ -32,13 +32,20 @@ public class RedisMq {
         redisTemplate = new StringRedisTemplate(mConnectionFactory);
     }
 
-
     /**
      * 发送消息
      * @param message
      */
     public void push(String message){
         redisTemplate.opsForList().leftPush(key,message);
+    }
+
+    /**
+     * 发送消息
+     * @param message
+     */
+    public void push(String key, String message){
+        redisTemplate.opsForList().rightPush(key,message);
     }
 
     /**

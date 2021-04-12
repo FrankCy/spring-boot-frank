@@ -5,6 +5,10 @@ spring:
     name: spring-boot-redis-mq
   # Redis 数据库索引（默认为 0）
   redis:
+    # dev2
+#    host: newjtmm-hwdev2-redis.t1tdws.0001.cnn1.cache.amazonaws.com.cn
+    # dev
+#    host: newjtmm-hwdev-redis.t1tdws.0001.cnn1.cache.amazonaws.com.cn
     host: 127.0.0.1
     port: 6379
     password: 123456
@@ -21,3 +25,4 @@ spring:
         min-idle: 0
     # 超时时间5s
     timeout: 5000
+    database: 8
