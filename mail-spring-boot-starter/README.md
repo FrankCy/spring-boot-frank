@@ -15,7 +15,7 @@ export PATH=$PATH:$MAVEN_HOME/bin
 source ~/.bash_profile
 ```
 
-- mvn打包
+- mvn打包（并不执行test）
 ```powershell
 mvn clean install -Dmaven.test.skip=true
 ```
@@ -34,6 +34,18 @@ mvn -B -U clean deploy -pl cloud-api -am -Dmaven.test.skip=true
 # -pl：选项后可跟随{groupId}:{artifactId}或者所选模块的相对路径(多个模块以逗号分隔)
 # -am：表示同时处理选定模块所依赖的模块
 ```
+
+- 删除本地TARGET
+```powershell
+mvn clean -U
+```
+
+- 删除本地依赖并导入私服最新依赖
+```powershell
+mvn dependency:purge-local-repository
+```
+
+
 
 - 需要的项目中引入
 ```xml

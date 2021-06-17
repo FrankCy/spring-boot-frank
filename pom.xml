@@ -50,6 +50,8 @@
         <module>spring-boot-distributed/distributed-current-limit</module>
         <module>spring-boot-distributed/distributed-sub-database-table</module>
         <module>spring-boot-redis-mq</module>
+        <module>spring-boot-clickhouse</module>
+        <module>spring-boot-httpclient</module>
     </modules>
 
     <parent>
@@ -58,6 +60,16 @@
         <version>2.0.3.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>ru.yandex.clickhouse</groupId>
+                <artifactId>clickhouse-jdbc</artifactId>
+                <version>0.1.53</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <!--注意： 这里必须要添加，否则各种依赖有问题 -->
     <repositories>
