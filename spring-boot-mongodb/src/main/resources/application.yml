@@ -1,0 +1,5 @@
+spring:
+  data:
+    mongodb:
+      # 链接的地址和库
+      uri: mongodb://127.0.0.1:27017/collection

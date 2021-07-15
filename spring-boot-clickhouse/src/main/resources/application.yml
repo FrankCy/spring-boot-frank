@@ -1,8 +1,33 @@
+# application.yml配置，要用jpa的批量插入必须设置batch_size等参数，jpa没有提供clickhouse的方言
+# ，clickhouse支持mysql的语法，所以直接用mysql的方言，方言可以在yml配置文件里面配置，也可以在后
+# 面的配置类里面配置，必能开启jpa的自动建表策略，主键也不能指定，否则报错
+
 spring:
+  jackson:
+    time-zone: GMT+8
   datasource:
-    clickhouse:
-      address: jdbc:clickhouse://127.0.0.1:8123
+    ck:
+      driver-class-name: ru.yandex.clickhouse.ClickHouseDriver
+      jdbc-url: jdbc:clickhouse://localhost:8123/test
       username: default
       password:
-      db: system
-      socketTimeout: 600000
+      connection-timeout: 20000
+      maximum-pool-size: 5
+  jpa:
+    hibernate:
+    #      naming:
+    #        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
+    #        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    open-in-view: false
+    #    database-platform: org.hibernate.dialect.MySQL8Dialect
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 500
+          batch_versioned_data: true
+        order_inserts: true
+        order_updates: true
+
+server:
+  port: 8089

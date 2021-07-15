@@ -52,6 +52,7 @@
         <module>spring-boot-redis-mq</module>
         <module>spring-boot-clickhouse</module>
         <module>spring-boot-httpclient</module>
+        <module>spring-boot-mongodb</module>
     </modules>
 
     <parent>
