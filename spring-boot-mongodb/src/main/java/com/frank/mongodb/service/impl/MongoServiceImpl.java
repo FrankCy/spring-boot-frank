@@ -48,17 +48,17 @@ public class MongoServiceImpl implements MongoService {
         }
 
         Aggregation eatAggregation = Aggregation.newAggregation(
-                //查询条件
+                /***** 查询条件 *****/
                 Aggregation.match(Criteria.where("createdTime").gte(startDate).lte(endDate)),
-                // price不等于空
+                // （条件1：price不等于空）
                 Aggregation.match(Criteria.where("price").exists(true)),
-                // callBackSize不等于空
+                // （条件2：callBackSize不等于空）
                 Aggregation.match(Criteria.where("callBackSize").exists(true)),
-                //查询项
+                /***** 查询项 *****/
                 Aggregation.project(type, "callBackResultSuccess", "callBackResultError", "price")
-                        // 求乘积，并强转数据
+                        // 求乘积，并强转数据，别名为sumPrice
                         .andExpression("multiply('$price', { $toInt: '$callBackSize' })").as("sumPrice"),
-                //分组条件和聚合项
+                /***** 分组条件和聚合项 *****/
                 Aggregation.group(type)
                         // 个数
                         .count().as("totalCount")
